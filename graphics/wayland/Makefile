@@ -19,7 +19,7 @@
 # and keep diff with upstream minimal.
 
 PORTNAME=	wayland
-PORTVERSION=	1.13.0
+PORTVERSION=	1.14.0
 CATEGORIES=	graphics wayland
 MASTER_SITES=	http://wayland.freedesktop.org/releases/
 
