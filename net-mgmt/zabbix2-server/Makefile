@@ -17,7 +17,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp \
 		libpkg.so:ports-mgmt/pkg
 
-CONFLICTS=	zabbix[0-9][0-9]${PKGNAMESUFFIX}-[0-9]* zabbix[0-13-9]${PKGNAMESUFFIX}-[0-9]*
+CONFLICTS=	zabbix[0-9][0-9]${PKGNAMESUFFIX} zabbix[0-13-9]${PKGNAMESUFFIX}
 
 ZABBIX_BUILD=	${PKGNAMESUFFIX:S/^-//}
 
@@ -55,11 +55,6 @@ CONFIGURE_ARGS+=	--enable-${ZABBIX_BUILD} \
 			--datadir=${ETCDIR}
 
 .if ${ZABBIX_BUILD} != "agent"
-USES+=		execinfo
-
-CPPFLAGS+=	${EXECINFO_CPPFLAGS}
-LDFLAGS+=	${EXECINFO_LDFLAGS}
-
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=	--with-net-snmp

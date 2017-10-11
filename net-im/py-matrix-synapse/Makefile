@@ -3,7 +3,7 @@
 
 PORTNAME=	matrix-synapse
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.21.1
+DISTVERSION=	0.23.0
 PORTREVISION=	0
 CATEGORIES=	net-im python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -59,6 +59,7 @@ GH_PROJECT=	synapse
 USE_RC_SUBR=	synapse
 
 USERS=		synapse
+GROUPS=		synapse
 
 DBDIR?=		/var/db/${PORTNAME}
 LOGDIR?=	/var/log/${PORTNAME}

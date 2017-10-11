@@ -1,8 +1,8 @@
-# Created by: José García Juanino <jjuanino@gmail.com>
+# Created by: JosÃ© GarcÃ­a Juanino <jjuanino@gmail.com>
 # $FreeBSD$
 
 PORTNAME=	borgbackup
-PORTVERSION=	1.0.10
+PORTVERSION=	1.0.11
 CATEGORIES=	archivers python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

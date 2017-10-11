@@ -3,6 +3,7 @@
 
 PORTNAME=	jucipp
 PORTVERSION=	1.2.4
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	editors
 
@@ -18,7 +19,7 @@ LIB_DEPENDS=	libaspell.so:textproc/aspell \
 		libclang.so:devel/llvm40
 
 USE_GNOME=	gdkpixbuf2 gtkmm30 gtksourceviewmm3
-USES=		cmake:outsource desktop-file-utils ninja pkgconfig
+USES=		cmake:outsource desktop-file-utils pkgconfig
 INSTALLS_ICONS=	yes
 
 USE_GITHUB=	yes

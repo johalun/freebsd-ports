@@ -2,12 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	rar2fs
-PORTVERSION=	1.24.0
+PORTVERSION=	1.25.2
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	fusefs-
 
-MAINTAINER=	jhale@FreeBSD.org
+MAINTAINER=	n_carlsson@outlook.com
 COMMENT=	Mount rar archives as filesystem
 
 LICENSE=	GPLv3+
@@ -19,10 +20,11 @@ BUILD_DEPENDS=	${NONEXISTENT}:${LIBUNRAR_PORT}:patch
 USE_GITHUB=	yes
 GH_ACCOUNT=	hasse69
 
-USES=		autoreconf execinfo gmake fuse
+USES=		autoreconf gmake fuse
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-fuse-lib=${LOCALBASE}/lib \
+CONFIGURE_ARGS=	--disable-static-unrar \
+		--with-fuse-lib=${LOCALBASE}/lib \
 		--with-fuse=${LOCALBASE}/include/fuse \
 		--with-unrar=`${MAKE} -C ${PORTSDIR}/${LIBUNRAR_PORT} -VWRKSRC` \
 		--with-unrar-lib=${LOCALBASE}/lib

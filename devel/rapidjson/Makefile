@@ -3,7 +3,7 @@
 
 PORTNAME=	rapidjson
 PORTVERSION=	1.1.0
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel textproc
 
@@ -13,7 +13,7 @@ COMMENT=	Fast JSON parser/generator for C++ with both SAX/DOM style API
 LICENSE=	unknown
 LICENSE_NAME=	RapidJSON
 LICENSE_FILE=	${WRKSRC}/license.txt
-LICENSE_PERMS=	${_LICENSE_PERMS_DEFAULT}
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BROKEN_aarch64=		does not build: c++: error: the clang compiler does not support -march=native
 BROKEN_armv6=		does not build: c++: error: the clang compiler does not support -march=native
@@ -36,7 +36,6 @@ EXAMPLES_CMAKE_ON=	-DRAPIDJSON_BUILD_EXAMPLES:BOOL=ON
 EXAMPLES_CMAKE_OFF=	-DRAPIDJSON_BUILD_EXAMPLES:BOOL=OFF
 
 CXXFLAGS+=	-Wno-c++98-compat # for EXAMPLES option, due to this bug: https://github.com/miloyip/rapidjson/issues/761
-MAKE_ARGS=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS}"
 CMAKE_ARGS=	-DRAPIDJSON_BUILD_TESTS:BOOL=OFF
 
 DATADIR=	${PREFIX}/share/doc/RapidJSON

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	bouncycastle
-PORTVERSION=	1.57
+PORTVERSION=	1.58
 CATEGORIES=	java security
 MASTER_SITES=	http://www.bouncycastle.org/download/ \
 		http://polydistortion.net/bc/download/
@@ -46,6 +46,12 @@ JARS=		${JARS_DOCS} bcprov-ext
 PORTDOCS=	*
 
 .include <bsd.port.options.mk>
+
+# PR 220612: remove fork="true" in javac and fork="yes" in junit tasks
+# NB: as of adding armv7, the patchname is kind of obsolete.
+.if ${ARCH} == armv6 || ${ARCH} == armv7
+EXTRA_PATCHES+=	${FILESDIR}/armv6-patch-bc+-build.xml
+.endif
 
 do-install:
 .for jar in ${JARS}

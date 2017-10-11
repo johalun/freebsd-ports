@@ -19,6 +19,7 @@
     SUBDIR += calligra
     SUBDIR += chexedit
     SUBDIR += codelite
+    SUBDIR += coedit
     SUBDIR += conglomerate
     SUBDIR += cooledit
     SUBDIR += cream
@@ -26,6 +27,7 @@
     SUBDIR += dhex
     SUBDIR += diakonos
     SUBDIR += dkns
+    SUBDIR += dlangide
     SUBDIR += drjava
     SUBDIR += e3
     SUBDIR += ecce
@@ -237,7 +239,6 @@
     SUBDIR += tweak
     SUBDIR += uemacs
     SUBDIR += uzap
-    SUBDIR += vanubi
     SUBDIR += vigor
     SUBDIR += vile
     SUBDIR += vim

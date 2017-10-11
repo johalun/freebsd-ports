@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME?=		mysql
-PORTVERSION=		8.0.0
+PORTVERSION=		8.0.2
 DISTVERSIONSUFFIX?=	-dmr
-PORTREVISION?=		4
 CATEGORIES=		databases ipv6
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -18,7 +17,7 @@ LICENSE=		GPLv2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
 SLAVEDIRS=	databases/mysql80-client
-USES=		bison:build cmake:outsource compiler:c11 compiler:c++11-lib \
+USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
 		cpe libedit localbase perl5 shebangfix ssl
 
 USE_PERL5=	run
@@ -31,6 +30,7 @@ LIB_DEPENDS+=	libevent.so:devel/libevent \
 		liblz4.so:archivers/liblz4
 
 CMAKE_BUILD_TYPE=	Release
+CFLAGS+=		-fPIC
 
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \
@@ -77,9 +77,11 @@ PLIST_SUB=	MY_DBDIR=${MY_DBDIR} \
 # MySQL-Server part
 .if !defined(CLIENT_ONLY)
 USES+=		mysql:80
+IGNORE_FreeBSD_10=	"FreeBSD 10.0 doesn't have _cxa_thread_atexit() implemeneted in libc, it has been implemented since 11
 
 CONFLICTS_INSTALL=	mysql8[1-9]-server-* \
 			mysql[0-79][0-9]-server-* \
+			mysqlwsrep* \
 			mariadb[0-9][0-9]-server-* \
 			percona[0-9][0-9]-server-*
 
