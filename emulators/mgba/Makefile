@@ -2,6 +2,7 @@
 
 PORTNAME=	mgba
 DISTVERSION=	0.6.1
+PORTREVISION=	1
 CATEGORIES=	emulators
 
 MAINTAINER=	greg@unrelenting.technology
@@ -14,7 +15,7 @@ LICENSE_FILE_LGPL21+=	${WRKSRC}/src/third-party/blip_buf/license.txt
 LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
-		libpng16.so:graphics/png
+		libpng.so:graphics/png
 
 USES=		cmake:outsource compiler:c++11-lang localbase:ldflags pkgconfig sqlite:3
 

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	nomad
-PORTVERSION=	0.6.3
+PORTVERSION=	0.7.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -24,8 +24,6 @@ USE_RC_SUBR=	nomad
 
 USERS=		nomad
 GROUPS=		nomad
-
-STRIP=
 
 do-build:
 	@cd ${WRKSRC}/src/github.com/hashicorp/nomad; \

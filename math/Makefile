@@ -102,6 +102,7 @@
     SUBDIR += algotutor
     SUBDIR += alt-ergo
     SUBDIR += amath
+    SUBDIR += ambit
     SUBDIR += analitza
     SUBDIR += ann
     SUBDIR += apc
@@ -115,7 +116,6 @@
     SUBDIR += aspcud
     SUBDIR += asymptote
     SUBDIR += atlas
-    SUBDIR += bargraph
     SUBDIR += biggles
     SUBDIR += blacs
     SUBDIR += blas
@@ -166,6 +166,7 @@
     SUBDIR += emc2
     SUBDIR += ent
     SUBDIR += entropy
+    SUBDIR += eprover
     SUBDIR += ess
     SUBDIR += eukleides
     SUBDIR += eval
@@ -317,12 +318,14 @@
     SUBDIR += mtl
     SUBDIR += mtrxmath
     SUBDIR += mumps
+    SUBDIR += mumps-edf
     SUBDIR += mumps-mpich
     SUBDIR += muparser
     SUBDIR += naturalmath
     SUBDIR += nauty
     SUBDIR += ndiff
     SUBDIR += newmat
+    SUBDIR += nfft
     SUBDIR += ngraph
     SUBDIR += nlopt
     SUBDIR += ntl
@@ -597,6 +600,8 @@
     SUBDIR += php70-gmp
     SUBDIR += php71-bcmath
     SUBDIR += php71-gmp
+    SUBDIR += php72-bcmath
+    SUBDIR += php72-gmp
     SUBDIR += physcalc
     SUBDIR += picosat
     SUBDIR += plman
@@ -678,6 +683,7 @@
     SUBDIR += rapid
     SUBDIR += reduce
     SUBDIR += reed-solomon
+    SUBDIR += rexx-regmath
     SUBDIR += rkward-kde4
     SUBDIR += rngstreams
     SUBDIR += rocs

@@ -2,18 +2,13 @@
 
 PORTNAME=	ppsspp
 DISTVERSIONPREFIX=	v
-DISTVERSION?=	1.4.2
-PORTREVISION?=	3
+DISTVERSION?=	1.5.4
+PORTREVISION?=	0
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
 MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage
 DISTFILES=	${PORTNAME}.1:manpage
 EXTRACT_ONLY=	${DISTFILES:N*\:manpage:C/:.*//}
-
-.if !defined(PKGNAMESUFFIX) || ${PKGNAMESUFFIX:N*-devel}
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	e33acdc5e922.patch:-p1
-.endif
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	PSP emulator in C++ with dynarec JIT for x86, ARM, MIPS
@@ -27,10 +22,10 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
-GH_TUPLE?=	hrydgard:glslang:b16f7e68:glslang/ext/glslang \
-		hrydgard:${PORTNAME}-lang:f32328a:lang/assets/lang \
-		KhronosGroup:SPIRV-Cross:6381b2f:SPIRV/ext/SPIRV-Cross \
-		Kingcom:armips:v0.9-26-g770365d:armips/ext/armips \
+GH_TUPLE?=	hrydgard:glslang:2edde666:glslang/ext/glslang \
+		hrydgard:${PORTNAME}-lang:1e3e4a0:lang/assets/lang \
+		KhronosGroup:SPIRV-Cross:90966d5:SPIRV/ext/SPIRV-Cross \
+		Kingcom:armips:v0.9-89-g8b4cada:armips/ext/armips \
 		Kingcom:tinyformat:Release-2.0.1-7-gb7f5a22:tinyformat/ext/armips/ext/tinyformat
 
 CONFLICTS_INSTALL=	${PORTNAME}-*
@@ -58,7 +53,7 @@ OPTIONS_SLAVE?=	SDL
 OPTIONS_EXCLUDE:=	${OPTIONS_SINGLE_GUI}
 
 OLDJOY_DESC=	Old joystick support with fixed button mappings (deprecated)
-OLDJOY_EXTRA_PATCHES?=	${PATCHDIR}/extra-patch-old-joy
+OLDJOY_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-old-joy
 QT5_USE=	QT5=qmake_build,buildtools_build,linguisttools_build,gui,opengl,widgets
 QT5_CMAKE_BOOL=	USING_QT_UI
 QT5_VARS=	EXENAME=PPSSPPQt

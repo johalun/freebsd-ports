@@ -16,8 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENCE
 
 BUILD_DEPENDS=	swig3.0:devel/swig30
 
-MAKE_ENV=	SWIG_FEATURES=-I${OPENSSLINC}
-PYDISTUTILS_BUILDARGS=	build_ext --openssl=${OPENSSLBASE} --swig=${LOCALBASE}/bin/swig3.0
+PYDISTUTILS_BUILDARGS=	build_ext --include=${OPENSSLINC} --openssl=${OPENSSLBASE} --swig=${LOCALBASE}/bin/swig3.0
 USE_PYTHON=	autoplist concurrent distutils
 USES=		python ssl
 
@@ -30,7 +29,7 @@ post-install:
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 3500
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing>=0:devel/py-typing
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing>=0:devel/py-typing@${FLAVOR}
 .endif
 
 .include <bsd.port.post.mk>

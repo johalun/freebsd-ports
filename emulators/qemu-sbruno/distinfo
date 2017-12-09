@@ -1,3 +1,3 @@
-TIMESTAMP = 1503667589
-SHA256 (qemu/2.9.94.g20170825/seanbruno-qemu-bsd-user-2.9.94.g20170825-2dbc44a_GH0.tar.gz) = 3fc2f3532a0e4c809c9a070f0616a46ab3110c2829f3271012c1ecd19f4741a2
-SIZE (qemu/2.9.94.g20170825/seanbruno-qemu-bsd-user-2.9.94.g20170825-2dbc44a_GH0.tar.gz) = 14636493
+TIMESTAMP = 1508784315
+SHA256 (qemu/2.9.94.g20171023/seanbruno-qemu-bsd-user-2.9.94.g20171023-32c666c_GH0.tar.gz) = 8f4e9ee2488cd95aa4a6f13d5aa11b66ab50a03e4a65163ad4f3d886bfef0fcc
+SIZE (qemu/2.9.94.g20171023/seanbruno-qemu-bsd-user-2.9.94.g20171023-32c666c_GH0.tar.gz) = 14637253

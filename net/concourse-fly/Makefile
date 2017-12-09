@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	concourse
-PORTVERSION=	3.5.0
+PORTVERSION=	3.6.0
 CATEGORIES=	net sysutils
 MASTER_SITES=	LOCAL/dumbbell/concourse/
 PKGNAMESUFFIX=	-fly
@@ -21,8 +21,6 @@ USES=		go tar:xz
 CONFLICTS_INSTALL=	fly
 
 PLIST_FILES=	bin/fly
-
-STRIP=		# stripping can break go binaries
 
 # The build instructions for `fly` suggest to clone the global Concourse
 # repository, which contains many Git submodules, including fly, and

@@ -2,7 +2,7 @@
 
 PORTNAME=	kodi
 DISTVERSION=	17.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia java
 
 MAINTAINER=	mickael.maillot@gmail.com
@@ -57,7 +57,7 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libvorbis.so:audio/libvorbis \
 		libxslt.so:textproc/libxslt \
 		libyajl.so:devel/yajl
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 ONLY_FOR_ARCHS=	amd64 armv6 armv7 i386
 KODI_ARCH_i386=	x86
@@ -94,7 +94,7 @@ PLIST_SUB=	ARCH=${KODI_ARCH_${ARCH}}
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	AIRPLAY AIRTUNES AVAHI CEC DOCS \
 		LIBBLURAY LIRC MYSQL NFS NONFREE PULSEAUDIO RTMP \
-		SFTP SMB VAAPI VDPAU WEBSERVER
+		SFTP SNDIO SMB VAAPI VDPAU WEBSERVER
 OPTIONS_SINGLE=		RPI
 OPTIONS_SINGLE_RPI=	RPI1 RPI2
 
@@ -152,6 +152,10 @@ RPI2_CONFIGURE_ON=	--with-platform=raspberry-pi2
 
 RTMP_LIB_DEPENDS=	librtmp.so:multimedia/librtmp
 RTMP_CONFIGURE_ENABLE=	rtmp
+
+SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
+SNDIO_CONFIGURE_ENABLE=	sndio
+SNDIO_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-sndio
 
 SMB_USES=		samba:lib
 SMB_CONFIGURE_ENABLE=	samba

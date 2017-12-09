@@ -3,7 +3,7 @@
 
 PORTNAME=	hiptext
 PORTVERSION=	0.0.s20160621
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@rawbw.com
@@ -20,6 +20,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:x11-fonts/dejavu
 
 BROKEN_aarch64=		fails to compile: error: the clang compiler does not support -march=native
 BROKEN_armv6=		fails to compile: error: the clang compiler does not support -march=native
+BROKEN_armv7=		fails to compile: error: the clang compiler does not support -march=native
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jart

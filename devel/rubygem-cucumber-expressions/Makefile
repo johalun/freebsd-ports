@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cucumber-expressions
-PORTVERSION=	4.0.4
+PORTVERSION=	5.0.7
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

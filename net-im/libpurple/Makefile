@@ -26,14 +26,12 @@ INSTALL_TARGET=	install-strip
 .if !defined(PIDGIN_SLAVE)
 # Pidgin slave ports that require the following functionality, must explicitly
 # set these macros themselves.
-USES+=		iconv python shebangfix
+USES+=		iconv python:2.7 shebangfix
 USE_LDCONFIG=	yes
-WANT_GNOME=	yes
 SHEBANG_FILES=	libpurple/purple-remote \
 		libpurple/purple-url-handler
 
 .if defined(PACKAGE_BUILDING)
-.undef WITHOUT_GNOME
 WITH_GNOME=	yes
 .endif
 
@@ -126,7 +124,7 @@ USE_GNOME+=	gconf2
 GCONF_SCHEMAS=	purple.schemas
 .endif
 
-#.if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
+#.if defined(WITH_GTKUI)
 #USE_GNOME+=		evolutiondataserver
 #PLIST_SUB+=		EVO=""
 #CONFIGURE_ARGS+=	--enable-gevolution
