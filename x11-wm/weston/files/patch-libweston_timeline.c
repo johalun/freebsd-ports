@@ -1,11 +1,6 @@
---- libweston/timeline.c.orig	2016-10-22 16:23:57 UTC
+--- libweston/timeline.c.orig	2017-08-08 18:57:03 UTC
 +++ libweston/timeline.c
-@@ -1,3 +1,4 @@
-+
- /*
-  * Copyright © 2014 Pekka Paalanen <pq@iki.fi>
-  * Copyright © 2014 Collabora, Ltd.
-@@ -36,6 +37,8 @@
+@@ -36,6 +36,8 @@
  #include "compositor.h"
  #include "file-util.h"
  

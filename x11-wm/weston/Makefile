@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	weston
-PORTVERSION=	2.0.0
+PORTVERSION=	3.0.0
 CATEGORIES=	x11-wm wayland
 MASTER_SITES=	http://wayland.freedesktop.org/releases/
 
@@ -21,8 +21,7 @@ LIB_DEPENDS= \
 		libfontconfig.so:x11-fonts/fontconfig	\
 		libfreetype.so:print/freetype2			\
 		libwayland-server.so:graphics/wayland	\
-		libwayland-egl.so:graphics/mesa-libs	\
-		libevent.so:devel/libevent2				\
+		libevent.so:devel/libevent				\
 		libpng.so:graphics/png					\
 		libwebp.so:graphics/webp				\
 		libffi.so:devel/libffi					\
@@ -93,8 +92,11 @@ CONFIGURE_ENV+= EGL_TESTS_CFLAGS="-L${STAGEDIR}${PREFIX}/lib -I${STAGEDIR}${PREF
 # Should not have to do this. "make" should find them in $WAYLAND_PROTOCOLS_DATADIR set by automake...
 WAYLAND_PROTOCOLS_DATADIR=`pkg-config --variable=pkgdatadir wayland-protocols`
 pre-configure:
-	@cp ${WAYLAND_PROTOCOLS_DATADIR}/stable/*/* ${WRKSRC}/protocol/
-	@cp ${WAYLAND_PROTOCOLS_DATADIR}/unstable/*/* ${WRKSRC}/protocol/
-
+	@${CP} ${WAYLAND_PROTOCOLS_DATADIR}/stable/*/* ${WRKSRC}/protocol/
+	@${CP} ${WAYLAND_PROTOCOLS_DATADIR}/unstable/*/* ${WRKSRC}/protocol/
+	@if ! pkg-config --exists wayland-egl; then \
+		${ECHO_MSG} "${PKGNAME}: Needs mesa-libs with wayland support enabled."; \
+		${FALSE}; \
+	fi
 
 .include <bsd.port.mk>

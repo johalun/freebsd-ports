@@ -1,4 +1,4 @@
---- xwayland/launcher.c.orig	2017-01-19 01:41:20 UTC
+--- xwayland/launcher.c.orig	2017-08-08 18:57:03 UTC
 +++ xwayland/launcher.c
 @@ -42,6 +42,10 @@
  #include "shared/string-helpers.h"
@@ -11,7 +11,7 @@
  static int
  weston_xserver_handle_event(int listen_fd, uint32_t mask, void *data)
  {
-@@ -68,9 +72,11 @@ weston_xserver_shutdown(struct weston_xs
+@@ -68,10 +72,12 @@ weston_xserver_shutdown(struct weston_xserver *wxs)
  {
  	char path[256];
  
@@ -20,11 +20,12 @@
  	unlink(path);
 -	snprintf(path, sizeof path, "/tmp/.X11-unix/X%d", wxs->display);
 +	snprintf(path, sizeof path, SOCKET_FMT, wxs->display);
-+	unlink(path);
-+	snprintf(path, sizeof path, SOCKET2_FMT, wxs->display);
  	unlink(path);
++	snprintf(path, sizeof path, SOCKET2_FMT, wxs->display);
++	unlink(path);
  	if (wxs->pid == 0) {
  		wl_event_source_remove(wxs->abstract_source);
+ 		wl_event_source_remove(wxs->unix_source);
 @@ -98,10 +104,10 @@ bind_to_abstract_socket(int display)
  
  	addr.sun_family = AF_LOCAL;
@@ -47,7 +48,7 @@
  	size = offsetof(struct sockaddr_un, sun_path) + name_size;
  	unlink(addr.sun_path);
  	if (bind(fd, (struct sockaddr *) &addr, size) < 0) {
-@@ -154,7 +160,7 @@ create_lockfile(int display, char *lockf
+@@ -154,7 +160,7 @@ create_lockfile(int display, char *lockfile, size_t ls
  	int fd, size;
  	pid_t other;
  

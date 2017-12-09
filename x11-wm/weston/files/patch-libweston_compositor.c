@@ -1,6 +1,6 @@
---- libweston/compositor.c.orig	2017-02-07 22:58:35 UTC
+--- libweston/compositor.c.orig	2017-08-08 18:57:03 UTC
 +++ libweston/compositor.c
-@@ -5224,10 +5224,10 @@ weston_compositor_set_presentation_clock
+@@ -5406,10 +5406,10 @@ weston_compositor_set_presentation_clock_software(
  {
  	/* In order of preference */
  	static const clockid_t clocks[] = {
@@ -14,7 +14,7 @@
  		CLOCK_REALTIME		/* may jump and crawl */
  	};
  	unsigned i;
-@@ -5416,6 +5416,7 @@ weston_compositor_get_user_data(struct w
+@@ -5598,6 +5598,7 @@ weston_compositor_get_user_data(struct weston_composit
  static const char * const backend_map[] = {
  	[WESTON_BACKEND_DRM] =		"drm-backend.so",
  	[WESTON_BACKEND_FBDEV] =	"fbdev-backend.so",

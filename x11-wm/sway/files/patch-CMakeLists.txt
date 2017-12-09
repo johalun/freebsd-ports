@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2017-10-14 15:24:21 UTC
++++ CMakeLists.txt
+@@ -145,7 +145,7 @@ install(
+ if(default-wallpaper)
+ 	install(
+         DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/assets/
+-		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/backgrounds/sway
++		DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/sway/backgrounds
+ 		COMPONENT data
+         FILES_MATCHING PATTERN "*Wallpaper*"
+ 		)

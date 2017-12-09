@@ -1,4 +1,4 @@
---- clients/screenshot.c.orig	2016-08-10 22:56:50 UTC
+--- clients/screenshot.c.orig	2017-08-08 18:57:02 UTC
 +++ clients/screenshot.c
 @@ -40,6 +40,8 @@
  #include "shared/os-compatibility.h"

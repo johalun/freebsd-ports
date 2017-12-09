@@ -123,6 +123,7 @@ GTK3_USE=		GNOME=cairo,gtk30
 GTK3_USES=		gettext-runtime
 GTK3_CONFIGURE_ON=	--with-x-toolkit=gtk3
 GTK3_IMPLIES=		X11
+GTK3_BUILD_DEPENDS=	wayland-protocols>=1.7:graphics/wayland-protocols
 JPEG_USES=		jpeg
 JPEG_CONFIGURE_WITH=	jpeg
 JPEG_IMPLIES=		X11

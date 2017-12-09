@@ -1,4 +1,4 @@
---- libweston/compositor-scfb.c.orig	2017-05-03 10:47:21 UTC
+--- libweston/compositor-scfb.c.orig	2017-10-13 15:26:13 UTC
 +++ libweston/compositor-scfb.c
 @@ -0,0 +1,832 @@
 +/*

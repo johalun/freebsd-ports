@@ -1,4 +1,4 @@
---- tests/surface-screenshot.c.orig	2017-01-19 01:41:20 UTC
+--- tests/surface-screenshot.c.orig	2017-08-08 18:57:03 UTC
 +++ tests/surface-screenshot.c
 @@ -37,6 +37,8 @@
  #include "compositor/weston.h"

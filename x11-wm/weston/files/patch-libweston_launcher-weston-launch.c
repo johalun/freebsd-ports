@@ -1,13 +1,21 @@
---- libweston/launcher-weston-launch.c.orig	2017-02-14 20:59:07 UTC
+--- libweston/launcher-weston-launch.c.orig	2017-08-08 18:57:03 UTC
 +++ libweston/launcher-weston-launch.c
-@@ -40,19 +40,29 @@
+@@ -34,26 +34,36 @@
+ #include <errno.h>
+ #include <signal.h>
+ #include <sys/socket.h>
+-#include <sys/sysmacros.h>
++/* #include <sys/sysmacros.h> */
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/uio.h>
  #include <sys/ioctl.h>
  #include <fcntl.h>
  #include <unistd.h>
 -#include <linux/vt.h>
 -#include <linux/kd.h>
 -#include <linux/major.h>
-+
+ 
 +#include <termios.h>
 +#include <sys/consio.h>
 +#include <sys/kbio.h>
@@ -20,7 +28,7 @@
 +/* #define TTY_BASENAME "/dev/tty" */
 +/* #define TTY_0        "/dev/tty0" */
 +
- 
++
  #include "compositor.h"
  #include "weston-launch.h"
  #include "launcher-impl.h"
@@ -35,20 +43,9 @@
 +/* #define KDSKBMUTE	0x4B51 */
 +/* #endif */
  
- #ifdef HAVE_LIBDRM
+ #ifdef BUILD_DRM_COMPOSITOR
  
-@@ -151,22 +161,35 @@ launcher_weston_launch_open(struct westo
- static void
- launcher_weston_launch_close(struct weston_launcher *launcher_base, int fd)
- {
-+	weston_log("%s: fd %d\n",__func__,fd);
- 	close(fd);
- }
- 
- static void
- launcher_weston_launch_restore(struct weston_launcher *launcher_base)
- {
-+	weston_log("%s\n",__func__);
+@@ -161,13 +171,24 @@ launcher_weston_launch_restore(struct weston_launcher 
  	struct launcher_weston_launch *launcher = wl_container_of(launcher_base, launcher, base);
  	struct vt_mode mode = { 0 };
  
@@ -74,7 +71,7 @@
  	/* We have to drop master before we switch the VT back in
  	 * VT_AUTO, so we don't risk switching to a VT with another
  	 * display server, that will then fail to set drm master. */
-@@ -243,7 +266,9 @@ launcher_weston_launch_connect(struct we
+@@ -244,7 +265,9 @@ launcher_weston_launch_connect(struct weston_launcher 
  		/* We don't get a chance to read out the original kb
  		 * mode for the tty, so just hard code K_UNICODE here
  		 * in case we have to clean if weston-launch dies. */

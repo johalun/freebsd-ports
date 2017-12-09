@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xwayland
-PORTVERSION=	1.19.1
+PORTVERSION=	1.18.4
 PORTREVISION=	1
 
 COMMENT=	X Clients under Wayland
@@ -20,17 +20,18 @@ PATCHDIR=	${.CURDIR}/files
 SLAVE_PORT=	yes
 OPTIONS_EXCLUDE=DEVD HAL SUID
 
-USE_XORG=	x11 xext xfont2
+USE_XORG=	x11 xext xfont2 xtrans
 USE_GL+=	egl gbm
 
 CONFIGURE_ARGS+=	--disable-docs --disable-devel-docs \
 			--enable-xwayland --disable-xorg --disable-xvfb --disable-xnest \
-			--disable-xquartz --disable-xwin
+			--disable-xquartz --disable-xwin --enable-dri3
 
 PLIST_FILES=	bin/Xwayland
 
 EXTRA_PATCHES=	${MASTERDIR}/files/patch-CVE-2017-13721 \
-		${MASTERDIR}/files/patch-CVE-2017-13723
+		${MASTERDIR}/files/patch-CVE-2017-13723 \
+		${MASTERDIR}/files/patch-configure
 
 do-install:
 	cd ${WRKSRC}/hw/xwayland; DESTDIR=${STAGEDIR} ${MAKE_CMD} install

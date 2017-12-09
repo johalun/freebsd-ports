@@ -1,0 +1,13 @@
+--- config.in.orig	2017-10-08 15:26:45 UTC
++++ config.in
+@@ -20,8 +20,8 @@ set $menu dmenu_run
+ 
+ ### Output configuration
+ #
+-# Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
+-output * bg __DATADIR__/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
++# Default wallpaper (more resolutions are available in __DATADIR__/sway/backgrounds/)
++output * bg __DATADIR__/sway/backgrounds/Sway_Wallpaper_Blue_1920x1080.png fill
+ #
+ # Example configuration:
+ #

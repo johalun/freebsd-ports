@@ -1,4 +1,4 @@
---- shared/xalloc.c.orig	2016-10-22 16:23:57 UTC
+--- shared/xalloc.c.orig	2017-08-08 18:57:03 UTC
 +++ shared/xalloc.c
 @@ -32,6 +32,8 @@
  

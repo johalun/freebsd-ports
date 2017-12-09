@@ -1,6 +1,6 @@
---- Makefile.am.orig	2017-05-03 10:47:21 UTC
+--- Makefile.am.orig	2017-10-13 15:26:13 UTC
 +++ Makefile.am
-@@ -84,6 +84,7 @@ libweston_@LIBWESTON_MAJOR@_la_SOURCES =
+@@ -85,6 +85,7 @@ libweston_@LIBWESTON_MAJOR@_la_SOURCES =			\
  	libweston/compositor.h				\
  	libweston/compositor-drm.h			\
  	libweston/compositor-fbdev.h			\
@@ -8,7 +8,7 @@
  	libweston/compositor-headless.h			\
  	libweston/compositor-rdp.h			\
  	libweston/compositor-wayland.h			\
-@@ -284,6 +285,7 @@ libwestoninclude_HEADERS =			\
+@@ -295,6 +296,7 @@ libwestoninclude_HEADERS =			\
  	libweston/compositor.h			\
  	libweston/compositor-drm.h		\
  	libweston/compositor-fbdev.h		\
@@ -16,10 +16,14 @@
  	libweston/compositor-headless.h		\
  	libweston/compositor-rdp.h		\
  	libweston/compositor-wayland.h		\
-@@ -452,6 +454,28 @@ fbdev_backend_la_SOURCES =			\
- 	$(INPUT_BACKEND_SOURCES)
- endif
- 
+@@ -459,6 +461,28 @@ fbdev_backend_la_CFLAGS =			\
+ fbdev_backend_la_SOURCES =			\
+ 	libweston/compositor-fbdev.c		\
+ 	libweston/compositor-fbdev.h		\
++	shared/helpers.h			\
++	$(INPUT_BACKEND_SOURCES)
++endif
++
 +if ENABLE_SCFB_COMPOSITOR
 +libweston_module_LTLIBRARIES += scfb-backend.la
 +scfb_backend_la_LDFLAGS = -module -avoid-version
@@ -38,10 +42,6 @@
 +scfb_backend_la_SOURCES =			\
 +	libweston/compositor-scfb.c		\
 +	libweston/compositor-scfb.h		\
-+	shared/helpers.h			\
-+	$(INPUT_BACKEND_SOURCES)
-+endif
-+
- if ENABLE_RDP_COMPOSITOR
- libweston_module_LTLIBRARIES += rdp-backend.la
- rdp_backend_la_LDFLAGS = -module -avoid-version
+ 	shared/helpers.h			\
+ 	$(INPUT_BACKEND_SOURCES)
+ endif

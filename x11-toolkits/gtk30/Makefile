@@ -43,7 +43,6 @@ USES+=		compiler:c11 gettext gmake gnome libtool localbase \
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
 CONFIGURE_ARGS=	--enable-x11-backend \
-		--disable-wayland-backend \
 		--enable-introspection
 CPPFLAGS+=	-fno-omit-frame-pointer
 INSTALLS_ICONS=	yes
@@ -57,9 +56,18 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 		org.gtk.Settings.Debug.gschema.xml \
 		org.gtk.Settings.FileChooser.gschema.xml
 
-OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY
+OPTIONS_DEFINE=	CUPS CLOUDPRINT COLORD DEBUG BROADWAY WAYLAND
 OPTIONS_DEFAULT=CUPS COLORD BROADWAY
 OPTIONS_SUB=	yes
+
+WAYLAND_DESC=	Enable Wayland backend
+WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
+						libwayland-egl.so:graphics/mesa-libs \
+						libxkbcommon.so:x11/libxkbcommon 
+WAYLAND_BUILD_DEPENDS= 	wayland-protocols>=1.7:graphics/wayland-protocols \
+					   	wayland-scanner:graphics/wayland \
+						v4l_compat>=0:multimedia/v4l_compat
+WAYLAND_CONFIGURE_ENABLE= wayland-backend
 
 BROADWAY_DESC=	Enable GDK Broadway backend for showing GTK+ in the webbrowser using HTML5 and web sockets.
 BROADWAY_CONFIGURE_ENABLE=	broadway-backend
@@ -83,12 +91,17 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
 		${WRKSRC}/configure
 
+# Should not have to do this. "make" should find them in $WAYLAND_PROTOCOLS_DATADIR set by automake...
+WAYLAND_PROTOCOLS_DATADIR=`pkg-config --variable=pkgdatadir wayland-protocols`
+
 pre-configure:
 # .if !exists() evaluates too early before cairo has a chance to be installed
 	@if ! pkg-config --exists cairo-xlib; then \
 		${ECHO_MSG} "${PKGNAME}: Needs cairo with X11 support enabled."; \
 		${FALSE}; \
 	fi
+	@cp ${WAYLAND_PROTOCOLS_DATADIR}/stable/*/* ${WRKSRC}/gdk/wayland/protocol/
+	@cp ${WAYLAND_PROTOCOLS_DATADIR}/unstable/*/* ${WRKSRC}/gdk/wayland/protocol/
 
 pre-build:
 	@${RM} -r ${WRKSRC}/docs/gtk.info*

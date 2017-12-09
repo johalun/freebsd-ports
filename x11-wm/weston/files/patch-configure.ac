@@ -1,6 +1,6 @@
---- configure.ac.orig	2017-02-24 23:44:18 UTC
+--- configure.ac.orig	2017-08-08 18:57:02 UTC
 +++ configure.ac
-@@ -251,6 +251,17 @@ AS_IF([test x$enable_fbdev_compositor = 
+@@ -244,6 +244,17 @@ AS_IF([test x$enable_fbdev_compositor = xyes], [
    PKG_CHECK_MODULES([FBDEV_COMPOSITOR], [libudev >= 136 mtdev >= 1.1.0])
  ])
  
@@ -18,7 +18,7 @@
  AC_ARG_ENABLE([rdp-compositor], [  --enable-rdp-compositor],,
                enable_rdp_compositor=no)
  AM_CONDITIONAL([ENABLE_RDP_COMPOSITOR],
-@@ -707,6 +718,7 @@ AC_MSG_RESULT([
+@@ -708,6 +719,7 @@ AC_MSG_RESULT([
  	Wayland Compositor		${enable_wayland_compositor}
  	Headless Compositor		${enable_headless_compositor}
  	FBDEV Compositor		${enable_fbdev_compositor}

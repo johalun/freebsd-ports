@@ -1,4 +1,4 @@
---- tests/weston-test-runner.c.orig	2017-02-07 22:58:35 UTC
+--- tests/weston-test-runner.c.orig	2017-08-08 18:57:03 UTC
 +++ tests/weston-test-runner.c
 @@ -38,6 +38,8 @@
  

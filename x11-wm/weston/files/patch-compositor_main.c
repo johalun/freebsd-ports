@@ -1,4 +1,4 @@
---- compositor/main.c.orig	2017-02-14 20:59:07 UTC
+--- compositor/main.c.orig	2017-08-08 18:57:02 UTC
 +++ compositor/main.c
 @@ -41,7 +41,9 @@
  #include <sys/socket.h>
@@ -19,7 +19,32 @@
  #include "compositor-x11.h"
  #include "compositor-wayland.h"
  #include "windowed-output-api.h"
-@@ -538,6 +541,9 @@ usage(int error_code)
+@@ -99,7 +102,7 @@ static int weston_log_timestamp(void)
+ 
+ 	if (brokendown_time->tm_mday != cached_tm_mday) {
+ 		strftime(string, sizeof string, "%Y-%m-%d %Z", brokendown_time);
+-		fprintf(weston_logfile, "Date: %s\n", string);
++		fprintf(weston_logfile, "Date: %s\r\n", string);
+ 
+ 		cached_tm_mday = brokendown_time->tm_mday;
+ 	}
+@@ -115,6 +118,7 @@ custom_handler(const char *fmt, va_list arg)
+ 	weston_log_timestamp();
+ 	fprintf(weston_logfile, "libwayland: ");
+ 	vfprintf(weston_logfile, fmt, arg);
++	fprintf(weston_logfile, "\r");
+ }
+ 
+ static void
+@@ -149,6 +153,7 @@ vlog(const char *fmt, va_list ap)
+ 
+ 	l = weston_log_timestamp();
+ 	l += vfprintf(weston_logfile, fmt, ap);
++	l += fprintf(weston_logfile, "\r");
+ 
+ 	return l;
+ }
+@@ -538,6 +543,9 @@ usage(int error_code)
  #if defined(BUILD_FBDEV_COMPOSITOR)
  			"\t\t\t\tfbdev-backend.so\n"
  #endif
@@ -29,7 +54,7 @@
  #if defined(BUILD_HEADLESS_COMPOSITOR)
  			"\t\t\t\theadless-backend.so\n"
  #endif
-@@ -577,6 +583,14 @@ usage(int error_code)
+@@ -577,6 +585,14 @@ usage(int error_code)
  		"\n");
  #endif
  
@@ -44,7 +69,7 @@
  #if defined(BUILD_HEADLESS_COMPOSITOR)
  	fprintf(stderr,
  		"Options for headless-backend.so:\n\n"
-@@ -680,9 +694,9 @@ clock_name(clockid_t clk_id)
+@@ -680,9 +696,9 @@ clock_name(clockid_t clk_id)
  	static const char *names[] = {
  		[CLOCK_REALTIME] =		"CLOCK_REALTIME",
  		[CLOCK_MONOTONIC] =		"CLOCK_MONOTONIC",
@@ -57,7 +82,7 @@
  #ifdef CLOCK_BOOTTIME
  		[CLOCK_BOOTTIME] =		"CLOCK_BOOTTIME",
  #endif
-@@ -1577,6 +1591,57 @@ load_x11_backend(struct weston_composito
+@@ -1579,6 +1595,57 @@ load_x11_backend(struct weston_compositor *c,
  }
  
  static void
@@ -115,7 +140,7 @@
  wayland_backend_output_configure_hotplug(struct wl_listener *listener, void *data)
  {
  	struct weston_output *output = data;
-@@ -1722,6 +1787,8 @@ load_backend(struct weston_compositor *c
+@@ -1724,6 +1791,8 @@ load_backend(struct weston_compositor *compositor, con
  		return load_rdp_backend(compositor, argc, argv, config);
  	else if (strstr(backend, "fbdev-backend.so"))
  		return load_fbdev_backend(compositor, argc, argv, config);
@@ -124,3 +149,16 @@
  	else if (strstr(backend, "drm-backend.so"))
  		return load_drm_backend(compositor, argc, argv, config);
  	else if (strstr(backend, "x11-backend.so"))
+@@ -1823,9 +1892,9 @@ int main(int argc, char *argv[])
+ 	weston_log_set_handler(vlog, vlog_continue);
+ 	weston_log_file_open(log);
+ 
+-	weston_log("%s\n"
+-		   STAMP_SPACE "%s\n"
+-		   STAMP_SPACE "Bug reports to: %s\n"
++	weston_log("%s\r\n"
++		   STAMP_SPACE "%s\r\n"
++		   STAMP_SPACE "Bug reports to: %s\r\n"
+ 		   STAMP_SPACE "Build: %s\n",
+ 		   PACKAGE_STRING, PACKAGE_URL, PACKAGE_BUGREPORT,
+ 		   BUILD_ID);

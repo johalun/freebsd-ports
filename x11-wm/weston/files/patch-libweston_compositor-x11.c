@@ -1,4 +1,4 @@
---- libweston/compositor-x11.c.orig	2017-01-19 01:41:20 UTC
+--- libweston/compositor-x11.c.orig	2017-08-08 18:57:03 UTC
 +++ libweston/compositor-x11.c
 @@ -37,6 +37,7 @@
  #include <errno.h>

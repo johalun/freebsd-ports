@@ -1,6 +1,6 @@
---- libweston/compositor.h.orig	2017-02-07 22:58:35 UTC
+--- libweston/compositor.h.orig	2017-08-08 18:57:03 UTC
 +++ libweston/compositor.h
-@@ -1619,6 +1619,7 @@ weston_compositor_create(struct wl_displ
+@@ -1672,6 +1672,7 @@ weston_compositor_create(struct wl_display *display, v
  enum weston_compositor_backend {
  	WESTON_BACKEND_DRM,
  	WESTON_BACKEND_FBDEV,
