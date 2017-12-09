@@ -111,6 +111,7 @@
     SUBDIR += spectrwm
     SUBDIR += stumpwm
     SUBDIR += subtle
+    SUBDIR += sway
     SUBDIR += swm
     SUBDIR += tinywm
     SUBDIR += transset
