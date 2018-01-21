@@ -1,6 +1,6 @@
 --- code/qcommon/vm_x86.c.orig	2008-08-17 23:22:06 UTC
 +++ code/qcommon/vm_x86.c
-@@ -36,7 +36,25 @@ Foundation, Inc., 51 Franklin St, Fifth 
+@@ -36,7 +36,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
  
  /* need this on NX enabled systems (i386 with PAE kernel or
   * noexec32=on x86_64) */

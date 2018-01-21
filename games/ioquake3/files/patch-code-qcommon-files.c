@@ -8,7 +8,7 @@
  static	cvar_t		*fs_basegame;
  static	cvar_t		*fs_gamedirvar;
  static	searchpath_t	*fs_searchpaths;
-@@ -2761,6 +2762,7 @@ static void FS_Startup( const char *game
+@@ -2761,6 +2762,7 @@ static void FS_Startup( const char *gameName )
  	fs_debug = Cvar_Get( "fs_debug", "0", 0 );
  	fs_basepath = Cvar_Get ("fs_basepath", Sys_DefaultInstallPath(), CVAR_INIT );
  	fs_basegame = Cvar_Get ("fs_basegame", "", CVAR_INIT );

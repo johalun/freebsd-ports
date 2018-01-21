@@ -1,15 +1,28 @@
 --- Makefile.orig	2009-04-22 18:54:48 UTC
 +++ Makefile
-@@ -187,6 +187,8 @@ ifeq ($(shell which pkg-config > /dev/nu
+@@ -173,7 +173,7 @@ Q3LCCETCDIR=$(MOUNT_DIR)/tools/lcc/etc
+ Q3LCCSRCDIR=$(MOUNT_DIR)/tools/lcc/src
+ LOKISETUPDIR=misc/setup
+ NSISDIR=misc/nsis
+-SDLHDIR=$(MOUNT_DIR)/SDL12
++SDLHDIR=$(MOUNT_DIR)/SDL2
+ LIBSDIR=$(MOUNT_DIR)/libs
+ TEMPDIR=/tmp
+ 
+@@ -185,8 +185,10 @@ ifeq ($(shell which pkg-config > /dev/null; echo $$?),
+   OPENAL_CFLAGS=$(shell pkg-config --cflags openal)
+   OPENAL_LIBS=$(shell pkg-config --libs openal)
    # FIXME: introduce CLIENT_CFLAGS
-   SDL_CFLAGS=$(shell pkg-config --cflags sdl|sed 's/-Dmain=SDL_main//')
-   SDL_LIBS=$(shell pkg-config --libs sdl)
+-  SDL_CFLAGS=$(shell pkg-config --cflags sdl|sed 's/-Dmain=SDL_main//')
+-  SDL_LIBS=$(shell pkg-config --libs sdl)
++  SDL_CFLAGS=$(shell pkg-config --cflags sdl2|sed 's/-Dmain=SDL_main//')
++  SDL_LIBS=$(shell pkg-config --libs sdl2)
 +  VORBIS_CFLAGS=$(shell pkg-config --silence-errors --cflags vorbis vorbisfile)
 +  VORBIS_LIBS=$(shell pkg-config --silence-errors --libs vorbis vorbisfile)
  endif
  
  # version info
-@@ -521,44 +523,25 @@ else # ifeq mingw32
+@@ -521,45 +523,26 @@ else # ifeq mingw32
  
  ifeq ($(PLATFORM),freebsd)
  
@@ -18,18 +31,34 @@
 -  else #default to i386
 -    ARCH=i386
 -  endif #alpha test
--
--
++   ifndef HOMEPATH
++     HOMEPATH = /.ioquake3
++   endif
+ 
++   ifndef DEFAULT_LIBDIR
++     DEFAULT_LIBDIR = /usr/local/lib/ioquake3
++   endif
+ 
 -  BASE_CFLAGS = -Wall -fno-strict-aliasing -Wimplicit -Wstrict-prototypes \
 -    -DUSE_ICON $(shell sdl-config --cflags)
--
++  # flags
++  BASE_CFLAGS = $(shell env MACHINE_ARCH=$(ARCH) make -f /dev/null -VCFLAGS) \
++    -Wall -fno-strict-aliasing -Wimplicit -Wstrict-prototypes \
++    -DHOMEPATH=\\\"$(HOMEPATH)\\\" \
++    -DDEFAULT_LIBDIR=\\\"$(DEFAULT_LIBDIR)\\\" \
++    -DUSE_ICON -DMAP_ANONYMOUS=MAP_ANON
++  CLIENT_CFLAGS += $(SDL_CFLAGS)
++  HAVE_VM_COMPILED = true
+ 
 -  ifeq ($(USE_OPENAL),1)
 -    BASE_CFLAGS += -DUSE_OPENAL
 -    ifeq ($(USE_OPENAL_DLOPEN),1)
 -      BASE_CFLAGS += -DUSE_OPENAL_DLOPEN
 -    endif
 -  endif
--
++  OPTIMIZEVM = -O3 -funroll-loops -fomit-frame-pointer
++  OPTIMIZE = $(OPTIMIZEVM) -ffast-math
+ 
 -  ifeq ($(USE_CODEC_VORBIS),1)
 -    BASE_CFLAGS += -DUSE_CODEC_VORBIS
 -  endif
@@ -49,38 +78,21 @@
 -    BASE_CFLAGS += -DNO_VM_COMPILED
 -  endif
 -  endif
-+   ifndef HOMEPATH
-+     HOMEPATH = /.ioquake3
-+   endif
-+ 
-+   ifndef DEFAULT_LIBDIR
-+     DEFAULT_LIBDIR = /usr/local/lib/ioquake3
-+   endif
-+ 
-+  # flags
-+  BASE_CFLAGS = $(shell env MACHINE_ARCH=$(ARCH) make -f /dev/null -VCFLAGS) \
-+    -Wall -fno-strict-aliasing -Wimplicit -Wstrict-prototypes \
-+    -DHOMEPATH=\\\"$(HOMEPATH)\\\" \
-+    -DDEFAULT_LIBDIR=\\\"$(DEFAULT_LIBDIR)\\\" \
-+    -DUSE_ICON -DMAP_ANONYMOUS=MAP_ANON
-+  CLIENT_CFLAGS += $(SDL_CFLAGS)
-+  HAVE_VM_COMPILED = true
- 
+-
 -  DEBUG_CFLAGS=$(BASE_CFLAGS) -g
-+  OPTIMIZEVM = -O3 -funroll-loops -fomit-frame-pointer
-+  OPTIMIZE = $(OPTIMIZEVM) -ffast-math
- 
+-
    SHLIBEXT=so
    SHLIBCFLAGS=-fPIC
+   SHLIBLDFLAGS=-shared $(LDFLAGS)
 @@ -568,20 +551,52 @@ ifeq ($(PLATFORM),freebsd)
    # don't need -ldl (FreeBSD)
    LIBS=-lm
  
 -  CLIENT_LIBS =
--
--  CLIENT_LIBS += $(shell sdl-config --libs) -lGL
 +  CLIENT_LIBS = $(SDL_LIBS) -lGL
  
+-  CLIENT_LIBS += $(shell sdl-config --libs) -lGL
+-
 +  # optional features/libraries
    ifeq ($(USE_OPENAL),1)
 -    ifneq ($(USE_OPENAL_DLOPEN),1)
@@ -89,17 +101,17 @@
 +    CLIENT_CFLAGS += -DUSE_OPENAL
 +    ifneq ($(USE_LOCAL_HEADERS),1)
 +      CLIENT_CFLAGS += $(OPENAL_CFLAGS)
-+    endif
-+  endif
-+
+     endif
+   endif
+ 
 +  ifeq ($(USE_CURL),1)
 +    CLIENT_LIBS += $(CURL_LIBS)
 +    CLIENT_CFLAGS += -DUSE_CURL
 +    ifneq ($(USE_LOCAL_HEADERS),1)
 +      CLIENT_CFLAGS += $(CURL_CFLAGS)
-     endif
-   endif
- 
++    endif
++  endif
++
    ifeq ($(USE_CODEC_VORBIS),1)
 -    CLIENT_LIBS += -lvorbisfile -lvorbis -logg
 +    CLIENT_LIBS += $(VORBIS_LIBS)
@@ -150,13 +162,13 @@
    ifeq ($(ARCH),ppc)
      Q3OBJ += $(B)/client/vm_powerpc.o $(B)/client/vm_powerpc_asm.o
    endif
-@@ -1591,6 +1609,9 @@ ifeq ($(HAVE_VM_COMPILED),true)
-   ifeq ($(ARCH),x86_64)
-     Q3DOBJ += $(B)/ded/vm_x86_64.o $(B)/ded/vm_x86_64_assembler.o
+@@ -1589,6 +1607,9 @@ ifeq ($(HAVE_VM_COMPILED),true)
+     Q3DOBJ += $(B)/ded/vm_x86.o
    endif
-+  ifeq ($(ARCH),amd64)
+   ifeq ($(ARCH),x86_64)
 +    Q3DOBJ += $(B)/ded/vm_x86_64.o $(B)/ded/vm_x86_64_assembler.o
 +  endif
-   ifeq ($(ARCH),ppc)
-     Q3DOBJ += $(B)/ded/vm_powerpc.o $(B)/ded/vm_powerpc_asm.o
++  ifeq ($(ARCH),amd64)
+     Q3DOBJ += $(B)/ded/vm_x86_64.o $(B)/ded/vm_x86_64_assembler.o
    endif
+   ifeq ($(ARCH),ppc)

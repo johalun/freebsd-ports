@@ -32,23 +32,23 @@ VDPAU_LIB_DEPENDS=	libvdpau.so:multimedia/libvdpau
 ALL_DRI_DRIVERS=	I915 I965 RADEON R200 SWRAST
 ALL_GALLIUM_DRIVERS=	FREEDRENO R300 R600 RADEONSI SVGA SWRAST VC4
 
-DRI_DRIVERS=		SWRAST	# classic swrast
+DRI_DRIVERS=		"" #SWRAST	# classic swrast
 .if "${MESA_LLVM_VER}" != ""
-GALLIUM_DRIVERS=	SWRAST	# llvmpipe
+GALLIUM_DRIVERS=	"" #SWRAST	# llvmpipe
 .else
 GALLIUM_DRIVERS=	""
 .endif
 .if ${ARCH} == amd64 || ${ARCH} == i386 \
  || ${ARCH} == powerpc || ${ARCH} == powerpc64
-DRI_DRIVERS+=		RADEON R200
-GALLIUM_DRIVERS+=	R300 R600
+DRI_DRIVERS+=		#RADEON R200
+GALLIUM_DRIVERS+=	#R300 R600
 . if "${MESA_LLVM_VER}" != ""	# until PPC gets LLVM in base
-GALLIUM_DRIVERS+=	RADEONSI
+GALLIUM_DRIVERS+=	#RADEONSI
 . endif
 .endif
 .if ${ARCH} == amd64 || ${ARCH} == i386
 DRI_DRIVERS+=		I915 I965
-GALLIUM_DRIVERS+=	SVGA
+GALLIUM_DRIVERS+=	#SVGA
 . if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000
 EXTRA_PATCHES+=	${PATCHDIR}/extra-src_mesa_drivers_dri_i965_intel__screen.c
 . endif

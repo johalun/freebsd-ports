@@ -1,6 +1,6 @@
 --- code/sys/sys_main.c.orig	2009-03-02 22:26:36 UTC
 +++ code/sys/sys_main.c
-@@ -49,6 +49,7 @@ Foundation, Inc., 51 Franklin St, Fifth 
+@@ -49,6 +49,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
  
  static char binaryPath[ MAX_OSPATH ] = { 0 };
  static char installPath[ MAX_OSPATH ] = { 0 };
@@ -39,7 +39,7 @@
  Sys_DefaultAppPath
  =================
  */
-@@ -384,6 +409,7 @@ Used to load a development dll instead o
+@@ -384,6 +409,7 @@ Used to load a development dll instead of a virtual ma
  #1 look down current path
  #2 look in fs_homepath
  #3 look in fs_basepath
@@ -47,7 +47,7 @@
  =================
  */
  void *Sys_LoadDll( const char *name, char *fqpath ,
-@@ -394,6 +420,7 @@ void *Sys_LoadDll( const char *name, cha
+@@ -394,6 +420,7 @@ void *Sys_LoadDll( const char *name, char *fqpath ,
  	void  (*dllEntry)( intptr_t (*syscallptr)(intptr_t, ...) );
  	char  fname[MAX_OSPATH];
  	char  *basepath;
@@ -55,7 +55,7 @@
  	char  *homepath;
  	char  *pwdpath;
  	char  *gamedir;
-@@ -405,6 +432,7 @@ void *Sys_LoadDll( const char *name, cha
+@@ -405,6 +432,7 @@ void *Sys_LoadDll( const char *name, char *fqpath ,
  	// TODO: use fs_searchpaths from files.c
  	pwdpath = Sys_Cwd();
  	basepath = Cvar_VariableString( "fs_basepath" );
@@ -63,7 +63,7 @@
  	homepath = Cvar_VariableString( "fs_homepath" );
  	gamedir = Cvar_VariableString( "fs_game" );
  
-@@ -413,6 +441,9 @@ void *Sys_LoadDll( const char *name, cha
+@@ -413,6 +441,9 @@ void *Sys_LoadDll( const char *name, char *fqpath ,
  	if(!libHandle && homepath)
  		libHandle = Sys_TryLibraryLoad(homepath, gamedir, fname, fqpath);
  
@@ -73,7 +73,7 @@
  	if(!libHandle && basepath)
  		libHandle = Sys_TryLibraryLoad(basepath, gamedir, fname, fqpath);
  
-@@ -469,6 +500,10 @@ void Sys_ParseArgs( int argc, char **arg
+@@ -469,6 +500,10 @@ void Sys_ParseArgs( int argc, char **argv )
  #	endif
  #endif
  

@@ -1,3 +1,9 @@
-i3-compatible Wayland compositor
+Sway was created to fill the need of an i3-like window manager for Wayland.
+The upstream i3 developers have no intention of porting i3 to Wayland, and
+projects proposed by others ended up as vaporware. Many thanks to the i3
+folks for providing such a great piece of software, so good that your users
+would rather write an entirely new window manager from scratch that behaved
+exactly like i3 rather than switch to something else. Launch sway directly
+from a tty or via your favorite Wayland-compatible login manager.
 
 WWW: http://swaywm.org/

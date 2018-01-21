@@ -24,7 +24,7 @@ USE_GL+=	egl gbm
 
 CONFIGURE_ARGS+=	--disable-docs --disable-devel-docs \
 			--enable-xwayland --disable-xorg --disable-xvfb --disable-xnest \
-			--disable-xquartz --disable-xwin --enable-dri3
+			--disable-xquartz --disable-xwin --enable-dri3 
 
 PLIST_FILES=	bin/Xwayland
 

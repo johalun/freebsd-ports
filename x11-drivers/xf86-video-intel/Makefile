@@ -39,7 +39,7 @@ ACCEL_DESC=	Default AccelMethod (if not specified in xorg.conf)
 SNA_DESC=	SandyBridge's New Acceleration
 UXA_DESC=	Unified Acceleration Architecture
 
-CONFIGURE_ARGS+=	--disable-udev
+CONFIGURE_ARGS+=	--disable-udev --enable-glamor
 
 SNA_CONFIGURE_ON=	--with-default-accel=sna
 UXA_CONFIGURE_ON=	--with-default-accel=uxa

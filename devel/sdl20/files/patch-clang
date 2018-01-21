@@ -11,7 +11,7 @@ https://hg.libsdl.org/SDL/rev/b48d8a98e261 regressed Clang 3.9 + -O2 builds.
 #3  0x0000000801161cec in SDL_InitSubSystem_REAL (flags=<optimized out>)
     at .../SDL2-2.0.6/src/SDL.c:170
 
---- src/video/x11/SDL_x11keyboard.c.orig	2017-09-22 18:51:01 UTC
+--- src/video/x11/SDL_x11keyboard.c.orig	2017-10-23 19:27:47 UTC
 +++ src/video/x11/SDL_x11keyboard.c
 @@ -266,7 +266,7 @@ X11_InitKeyboard(_THIS)
      int best_distance;
@@ -22,7 +22,7 @@ https://hg.libsdl.org/SDL/rev/b48d8a98e261 regressed Clang 3.9 + -O2 builds.
      
      X11_XAutoRepeatOn(data->display);
  
---- src/video/x11/SDL_x11sym.h.orig	2017-09-22 18:51:01 UTC
+--- src/video/x11/SDL_x11sym.h.orig	2017-10-23 19:27:47 UTC
 +++ src/video/x11/SDL_x11sym.h
 @@ -180,7 +180,7 @@ SDL_X11_SYM(Status,XkbGetUpdatedMap,(Display* a,unsign
  SDL_X11_SYM(XkbDescPtr,XkbGetMap,(Display* a,unsigned int b,unsigned int c),(a,b,c),return)
