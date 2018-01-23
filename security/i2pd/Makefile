@@ -3,6 +3,7 @@
 
 PORTNAME=	i2pd
 PORTVERSION=	2.17.0
+PORTREVISION=	1
 CATEGORIES=	security net-p2p
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -12,8 +13,6 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
-
-BROKEN_powerpc64=	does not build: error: to_string is not a member of std
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	PurpleI2P

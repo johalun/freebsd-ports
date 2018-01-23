@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	metasploit
-PORTVERSION=	4.16.21
+PORTVERSION=	4.16.32
 CATEGORIES=	security
 
 MAINTAINER=	tanawts@gmail.com
@@ -26,8 +26,8 @@ RUN_DEPENDS=	nmap:security/nmap \
 		rubygem-metasploit-credential>=0:security/rubygem-metasploit-credential \
 		rubygem-metasploit_data_models>=0:security/rubygem-metasploit_data_models \
 		rubygem-metasploit-model>=0:security/rubygem-metasploit-model \
-		rubygem-metasploit-payloads>=1.3.18:security/rubygem-metasploit-payloads \
-		rubygem-metasploit_payloads-mettle>=0.2.8:security/rubygem-metasploit_payloads-mettle \
+		rubygem-metasploit-payloads>=1.3.25:security/rubygem-metasploit-payloads \
+		rubygem-metasploit_payloads-mettle>=0.3.3:security/rubygem-metasploit_payloads-mettle \
 		rubygem-msgpack1>=0:devel/rubygem-msgpack1 \
 		rubygem-network_interface>=0:net/rubygem-network_interface \
 		rubygem-rubyntlm>=0:net/rubygem-rubyntlm \
@@ -46,6 +46,7 @@ RUN_DEPENDS=	nmap:security/nmap \
 		rubygem-windows_error>=0:devel/rubygem-windows_error \
 		rubygem-pdf-reader>=0:print/rubygem-pdf-reader \
 		rubygem-dnsruby>=0:dns/rubygem-dnsruby \
+		rubygem-mqtt>=0:net/rubygem-mqtt \
 		rubygem-net-ssh>=0:security/rubygem-net-ssh \
 		rubygem-ruby_smb>=0:net/rubygem-ruby_smb \
 		rubygem-rex-arch>=0:security/rubygem-rex-arch \
@@ -74,7 +75,8 @@ RUN_DEPENDS=	nmap:security/nmap \
 		rubygem-openvas-omp>=0:security/rubygem-openvas-omp \
 		rubygem-nessus_rest>=0:security/rubygem-nessus_rest \
 		rubygem-nexpose>=0:security/rubygem-nexpose \
-		rubygem-xdr>=0:converters/rubygem-xdr
+		rubygem-xdr>=0:converters/rubygem-xdr \
+		rubygem-faker>=0:devel/rubygem-faker
 
 SCRIPTS=	msfconsole msfd msfrpc msfrpcd msfvenom
 

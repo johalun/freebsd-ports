@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME?=	mariadb
-PORTVERSION=	10.1.29
-PORTREVISION?=	0
+PORTVERSION=	10.1.30
+PORTREVISION?=	1
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
@@ -28,7 +28,7 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 SLAVEDIRS=	databases/mariadb101-client
-USES=		bison:build cmake compiler:c++11-lib cpe libedit ncurses \
+USES=		bison:build cmake:noninja compiler:c++11-lib cpe libedit ncurses \
 		shebangfix ssl
 USE_LDCONFIG=	${PREFIX}/lib/mysql
 SHEBANG_FILES=	scripts/*.sh
@@ -143,6 +143,7 @@ MAXKEY_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-include_my__compare.h
 MROONGA_LIB_DEPENDS=	liblz4.so:archivers/liblz4
 MROONGA_VARS=		LICENSE+=LGPL20 LICENSE_COMB=multi
 MSGPACK_LIB_DEPENDS=	libmsgpackc.so:devel/msgpack
+OQGRAPH_BROKEN=		OQGRAPH fails to build with boost 1.66, see bug 224089
 OQGRAPH_LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 			libJudy.so:devel/judy
 SNAPPY_CMAKE_OFF=	-DWITH_INNODB_SNAPPY=OFF
@@ -155,7 +156,7 @@ ZMQ_LIB_DEPENDS=	libzmq.so:net/libzmq4
 
 NOT_FOR_ARCHS=		i386
 NOT_FOR_ARCHS_REASON=	currently does not compile on i386, see \
-			https://mariadb.atlassian.net/browse/MDEV-9627
+			https://jira.mariadb.org/browse/MDEV-9627
 
 post-install:
 # Remove programs to avoid conflict with mariadb101-client

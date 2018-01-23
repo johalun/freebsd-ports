@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	SpeechRecognition
-PORTVERSION=	3.7.1
+PORTVERSION=	3.8.1
 CATEGORIES=	audio python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	kevlo@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python Library for performing speech recognition
 
 LICENSE=	BSD3CLAUSE

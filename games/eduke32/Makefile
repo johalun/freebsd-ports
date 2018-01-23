@@ -28,6 +28,8 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libvpx.so:multimedia/libvpx \
 		libpng.so:graphics/png
 
+BROKEN_aarch64=		fails to compile: polymost.cpp:2403:18: non-constant-expression cannot be narrowed from type 'long' to 'int32_t' (aka 'int') in initializer list
+
 USES=		gmake pkgconfig tar:xz
 USE_GL=		gl glu
 USE_GNOME=	gtk20
@@ -42,11 +44,11 @@ MAKE_ARGS=	CC=${CC} CXX=${CXX}
 PLIST_FILES=	bin/eduke32 bin/mapster32
 PORTEXAMPLES=	*
 
-BROKEN_sparc64=	does not compile on sparc64
-
 OPTIONS_DEFINE=		EXAMPLES GCC HRP OFFENSIVE SHAREWARE VOXEL
 OPTIONS_DEFINE_i386=	ASM
 OPTIONS_DEFAULT_i386=	ASM
+OPTIONS_DEFAULT_powerpc=	GCC
+OPTIONS_DEFAULT_sparc64=	GCC
 
 ASM_BUILD_DEPENDS=	nasm:devel/nasm
 ASM_MAKE_ARGS_OFF=	NOASM=1

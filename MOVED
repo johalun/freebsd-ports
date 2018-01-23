@@ -520,7 +520,6 @@ java/javel||2009-03-23|Has expired: unmaintained, does not work with current ver
 java/guavac||2009-03-23|Has expired: unmaintained, does not work with current versions of GCC, needs gcc295 which has been failing to build for months
 graphics/xrml||2009-03-23|Has expired: unmaintained, does not work with current versions of GCC, needs gcc295 which has been failing to build for months
 graphics/renderpark||2009-03-23|Has expired: unmaintained, does not work with current versions of GCC, needs gcc295 which has been failing to build for months
-games/jumpnbump||2009-03-23|Has expired: Tcl 8.0 support is going to be dropped
 irc/blackened||2009-03-23|Has expired: Broken and abandonware
 devel/libg++||2009-03-23|Has expired: unmaintained, does not work with current versions of GCC, needs gcc295 which has been failing to build for months
 devel/freescope||2009-03-23|Has expired: unmaintained, does not work with current versions of GCC, needs gcc295 which has been failing to build for months
@@ -2078,7 +2077,6 @@ finance/xinvest||2011-05-02|Has expired: Outdated, abandoned
 finance/xquote||2011-05-02|Has expired: Outdated, abandoned
 french/plgrenouille||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 editors/xemacs-devel-mule-xft||2011-05-02|Remove, editors/xemacs-devel-mule builds with xft support now
-lang/cim||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 lang/clips||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 lang/eiffel||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 lang/libutils||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
@@ -3230,7 +3228,7 @@ lang/python-doc-postscript-letter||2012-04-17|This port was broken for a long ti
 mail/dbmail20||2012-04-18|Has expired: No longer supported upstream. No ports depend on this
 mail/dbmail21||2012-04-18|Has expired: No longer supported upstream. No ports depend on this
 mail/dbmail23||2012-04-18|Has expired: No longer supported upstream. No ports depend on this
-math/octave-forge-times||2012-04-18|Depreciated upstream
+math/octave-forge-times||2012-04-18|Deprecated upstream
 www/fpc-httpd13||2012-04-19|Obsolete freepascal unit. Use www/fpc-httpd22 instead of it
 www/fpc-httpd20||2012-04-19|Obsolete freepascal unit. Use www/fpc-httpd22 instead of it
 editors/lazarus-gtk2||2012-04-20|Never fully added. Use editors/lazarus instead
@@ -4018,7 +4016,6 @@ graphics/solang||2013-02-14|Has expired: Broken for more than 6 months
 math/octave-devel||2013-02-14|Has expired: Broken for more than 6 months
 net/spnetkit||2013-02-14|Has expired: Broken for more than 6 months
 devel/py-flakes|devel/py-pyflakes|2013-02-18|Renamed to correct upstream name
-net/samba4-devel|net/samba4|2013-02-18|Renamed to reflect maturity of upstream version
 net/libnet-devel|net/libnet|2013-02-18|Renamed to stable branch
 x11-fm/tkdesk||2013-02-19|Obsolete and unmaintained, doesn't run
 textproc/libmspub|print/libmspub|2013-02-21|Duplicate of print/libmspub
@@ -4358,7 +4355,6 @@ games/rtcw|games/linux-rtcw|2013-06-18|Renamed (Linux binary port)
 multimedia/p5-Video-Info||2013-06-19|Has expired: Broken for more than 6 months
 net-p2p/p5-pdonkey||2013-06-19|Removed: depends on expired multimedia/p5-Video-Info
 lang/boo||2013-06-19|Has expired: Broken for more than 6 months
-math/petsc-mpich||2013-06-19|Has expired: Broken for more than 6 months
 databases/py-MySQLdb41||2013-06-19|Depends on databases/mysql41-client, which was removed
 databases/py-MySQLdb50||2013-06-19|Depends on databases/mysql50-client, which was removed
 devel/bugzilla|devel/bugzilla40|2013-06-20|Renamed
@@ -5221,7 +5217,7 @@ sysutils/rsyslog6-dbi||2013-11-25|Has expired: Use sysutils/rsyslog7
 www/trac-gitplugin||2013-11-25|Removed: this plugin has been included in the Trac 1.0 distribution
 audio/mpc|audio/musicpc|2013-11-26|Renamed to avoid conflict with math/mpc
 deskutils/q4wine|emulators/q4wine|2013-11-26|Move to better category
-devel/p5-MooseX-ChainedAccessors||2013-11-27|Has expired: Marked as depreciated upstream
+devel/p5-MooseX-ChainedAccessors||2013-11-27|Has expired: Marked as deprecated upstream
 devel/py-distribute|devel/py-setuptools|2013-11-27|Replaced with setuptools
 devel/zmq-devel|net/libzmq3|2013-11-28|Rename according to upstream and move to more suitable category
 devel/czmq|net/czmq|2013-11-29|Move to a more suitable category and with other libzmq ports
@@ -6475,7 +6471,6 @@ audio/liquidsoap||2014-09-01|Not staged
 benchmarks/spec-sfs||2014-09-01|Not staged
 biology/blast||2014-09-01|Not staged
 biology/embassy||2014-09-01|Not staged
-biology/pymol||2014-09-01|Not staged
 cad/scv||2014-09-01|Not staged
 cad/systemc||2014-09-01|Not staged
 chinese/cmexfonts||2014-09-01|Not staged
@@ -6648,7 +6643,6 @@ math/jsmath-fonts-sprite||2014-09-01|Not staged
 math/jsmath||2014-09-01|Not staged
 math/kash3||2014-09-01|Not staged
 math/matrix||2014-09-01|Not staged
-math/petsc||2014-09-01|Not staged
 math/sdpa-gmp||2014-09-01|Not staged
 math/sedumi||2014-09-01|Not staged
 math/unixstat||2014-09-01|Not staged
@@ -7928,7 +7922,6 @@ cad/slffea||2015-11-28|Has expired: Broken for more than 6 months
 audio/cripple||2015-11-28|Has expired: Broken for more than 6 months
 cad/geda-gattrib||2015-11-28|Has expired: Broken for more than 6 months
 cad/findhier||2015-11-28|Has expired: Broken for more than 6 months
-audio/wmmp||2015-11-28|Has expired: Broken for more than 6 months
 x11/avant-window-navigator||2015-11-28|Has expired: Broken for more than 6 months
 cad/geda-netlist||2015-11-28|Has expired: Broken for more than 6 months
 deskutils/libopensync-plugin-sunbird||2015-11-28|Has expired: Broken for more than 6 months
@@ -9472,7 +9465,7 @@ sysutils/rubygem-SyslogLogger||2017-07-31|Has expired: Project is EOL'd because 
 multimedia/avbin||2017-07-31|Has expired: Unfetchable for more than six months (google code has gone away)
 games/gondola||2017-07-31|Depends on expired multimedia/avbin
 sysutils/flyback||2017-07-31|Unfetchable for more than six months (google code has gone away)
-multimedia/py-ffmpeg||2017-07-31|Has expired: Depreciated upstream in favour of ffpyplayer
+multimedia/py-ffmpeg||2017-07-31|Has expired: Deprecated upstream in favour of ffpyplayer
 devel/cloudabi-binutils-aarch64|devel/cloudabi-toolchain|2017-07-31|ELF-toolchain based tools should be used instead
 devel/cloudabi-binutils-x86_64|devel/cloudabi-toolchain|2017-07-31|ELF-toolchain based tools should be used instead
 security/openvas-libraries|security/openvas8-libraries|2017-08-03|Renamed to include openvas 9 ports
@@ -9646,12 +9639,12 @@ www/linux-seamonkey||2017-11-22|Has expired: Use native www/seamonkey instead
 graphics/linux-adobesvg||2017-11-22|Has expired: not supported by linux-firefox 52 or later
 sysutils/qjail2||2017-11-26|Has expired: Only for FreeBSD 8 and 9, use sysutils/qjail[4] instead
 www/newsbeuter|www/newsboat|2017-11-27|Port was renamed
-devel/buildbot|devel/py-buildbot|2017-11-29|Rename to comply with PyPI scheme.
-devel/buildbot-console-view|devel/py-buildbot-console-view|2017-11-29|Rename to comply with PyPI scheme.
-devel/buildbot-pkg|devel/py-buildbot-pkg|2017-11-29|Rename to comply with PyPI scheme.
-devel/buildbot-waterfall-view|devel/py-buildbot-waterfall-view|2017-11-29|Rename to comply with PyPI scheme.
-devel/buildbot-worker|devel/py-buildbot-worker|2017-11-29|Rename to comply with PyPI scheme.
-devel/buildbot-www|devel/py-buildbot-www|2017-11-29|Rename to comply with PyPI scheme.
+devel/buildbot|devel/py-buildbot|2017-11-29|Rename to comply with PyPI scheme
+devel/buildbot-console-view|devel/py-buildbot-console-view|2017-11-29|Rename to comply with PyPI scheme
+devel/buildbot-pkg|devel/py-buildbot-pkg|2017-11-29|Rename to comply with PyPI scheme
+devel/buildbot-waterfall-view|devel/py-buildbot-waterfall-view|2017-11-29|Rename to comply with PyPI scheme
+devel/buildbot-worker|devel/py-buildbot-worker|2017-11-29|Rename to comply with PyPI scheme
+devel/buildbot-www|devel/py-buildbot-www|2017-11-29|Rename to comply with PyPI scheme
 emulators/ppsspp-devel|emulators/ppsspp|2017-11-29|Out of date: use emulators/ppsspp for now
 audio/shairport|audio/shairport-sync|2017-11-29|Has expired: Officially unmaintained upstream. Use audio/shairport-sync instead
 accessibility/py3-speech-dispatcher|accessibility/py-speech-dispatcher@py36|2017-11-30|Moved to a flavored, generic, version
@@ -9805,8 +9798,66 @@ security/webshag||2017-12-01|Has expired: Abandoned
 www/p5-Yahoo-Lifestyle||2017-12-01|Has expired: This service has been shut down
 games/linux-rtcw|games/iortcw|2017-12-01|Has expired: Use the native and open source games/iortcw instead
 java/bootstrap-openjdk|java/bootstrap-openjdk6|2017-12-01|Has expired: superseded by java/bootstrap-openjdk[68]
-lang/gcc46|lang/gcc6|2017-12-01|Has expired: Unsupported by upstream. Use GCC 6 or newer instead.
+lang/gcc46|lang/gcc6|2017-12-01|Has expired: Unsupported by upstream. Use GCC 6 or newer instead
 security/krb5-113|security/krb5-114|2017-12-03|Has expired: EOL twelve months after release of krb5-1.15
 net/bird6|net/bird@ipv6|2017-12-06|Moved to a flavored version
 devel/kore-notls|devel/kore@notls|2017-12-06|Moved to a flavored version
 devel/llvm-cheri128|devel/llvm-cheri|2017-12-07|A single cheri compiler can now target 128-bit and 256-bit capabilities
+audio/cd-console||2017-12-13|Has expired: No public distfiles
+textproc/pecl-cld||2017-12-13|Has expired: Depends on expired devel/cld
+textproc/p5-Lingua-Identify-CLD||2017-12-13|Has expired: Depends on expired devel/cld
+devel/cld||2017-12-13|Has expired: Unfetchable for more than six months (google code has gone away)
+devel/py-ode|devel/py-PyODE|2017-12-14|Rename to reflect official Python modules naming scheme
+net-im/pork||2017-12-16|Removed, AIM shut down on 2017-12-15
+security/aimsniff||2017-12-16|Removed, AIM shut down on 2017-12-15
+net-im/bsflite||2017-12-18|Removed, AIM shut down on 2017-12-15
+audio/last.fm||2017-12-18|Removed, Last.fm Radio shutdown in 2014-03
+net-im/p5-Net-AIM||2017-12-19|Removed, AIM shut down on 2017-12-15
+devel/swig13|devel/swig30|2017-12-20|swig 1.3 is not maintained, use swig 3.0
+devel/swig20|devel/swig30|2017-12-20|swig 2.0 is not maintained, use swig 3.0
+devel/android-tools-adb-devel|devel/android-tools-adb|2017-12-20|Out of date: use devel/android-tools-adb for now
+devel/android-tools-fastboot-devel|devel/android-tools-fastboot|2017-12-20|Out of date: use devel/android-tools-fastboot for now
+math/petsc|science/PETSc|2017-12-20|Recreated after it has been deleted in r366959 on 2014-09-01
+math/petsc-mpich|science/PETSc|2017-12-20|Recreated after it has been deleted in r321243 on 2013-06-19 (it was a slave port)
+textproc/py-elasticsearch-py|textproc/py-elasticsearch|2017-12-21|Rename to match PyPI naming
+japanese/egg-canna||2017-12-25|Has expired: Requires Emacs versions before 23
+editors/tree-widget||2017-12-26|Has expired: Now part of Emacs
+www/py-flup|www/py-flup6|2017-12-26|forked, for py3k support
+net/openh323||2017-12-27|Abandoned in 2007, continued as net/h323plus
+net/ohphone||2017-12-27|Part of OpenH323 project, abandoned in 2007
+devel/pwlib||2017-12-27|Part of OpenH323 project, abandoned in 2007, continued as devel/ptlib
+deskutils/etask||2017-12-27|Has expired: Unsupported by upstream since 2007
+misc/p5-Asterisk|misc/p5-asterisk-perl|2017-12-29|Rename to match upstream naming
+www/npm2|www/npm|2017-12-31|Has expired: use www/npm or www/npm-node* instead
+www/npm3|www/npm|2017-12-31|Has expired: use www/npm or www/npm-node* instead
+net/rubygem-fog-aws0|net/rubygem-fog-aws|2017-12-31|Has expired: use net/rubygem-fog-aws or net/rubygem-fog-aws1 instead
+net-mgmt/nrpe|net-mgmt/nrpe3|2018-01-01|nrpe 2.0 not maintained, use nrpe 3.0
+net-mgmt/nrpe-ssl|net-mgmt/nrpe3|2018-01-01|nrpe 2.0 not maintained, use nrpe 3.0
+security/gnupg20|security/gnupg|2018-01-01|Has expired: Will reach EOL upstream on 2017-12-31
+dns/dualserver|dns/dnsmasq|2018-01-01|Has expired: Please migrate to dns/dnsmasq; over the years dualserver has become unmaintainable
+devel/p5-Parse-Pidl44|devel/p5-Parse-Pidl|2018-01-01|Has expired: use devel/p5-Parse-Pidl instead
+sysutils/DTraceToolkit||2018-01-01|Has expired: Now maintained as part of the base system
+www/rubygem-jwt2|www/rubygem-jwt|2018-01-02|www/rubygem-jwt has been updated to 2.x
+misc/py-qt5-doc||2018-01-02|No longer shipped by upstream
+audio/beast||2018-01-05|Has expired: 4.5 years old version, six versions behind, requires old toolchain, and unmaintained.
+devel/p5-MooseX-Role-WithOverloading||2018-01-06|Has expired: deprecated by upstream (obsolete with modern Moose)
+devel/p5-Test-Block||2018-01-06|Has expired: Marked as deprecated upstream
+sysutils/socket||2018-01-06|Has expired: Out of date
+x11-toolkits/qt5-declarative-render2d/||2018-01-06|Merged into x11-toolkits/qt5-quick
+editors/vim-lite|editors/vim-console|2018-01-11|Renamed to reflect that it is console-only, not any lighter
+devel/py-repl|devel/py-pyrepl|2018-01-10|Rename to match pypi name
+devel/lua-bitop-51|devel/lua51-bitop|2018-01-14|Rename to lua51- prefix
+astro/boinc-setiathome-v7|astro/boinc-setiathome-v8|2018-01-14|Rename to v8 to reflect current version
+astro/boinc-setiathome-v8|astro/boinc-setiathome|2018-01-14|Rename to unversioned per adamw@
+textproc/ruby-sary||2018-01-15|Has expired: Does not build with current versions of ruby
+textproc/ruby-deplate||2018-01-15|Has expired: Does not build with current versions of ruby
+www/ruby-aws||2018-01-15|Has expired: Does not build with current versions of ruby
+www/samidare||2018-01-15|Has expired: Does not build with current versions of ruby
+devel/ruby-calendar||2018-01-15|Has expired: Does not build with current versions of ruby
+devel/ruby-rbbr||2018-01-15|Has expired: Does not build with current versions of ruby
+devel/ruby-date2||2018-01-15|Has expired: Does not build with current versions of ruby
+audio/ruby-xmms2||2018-01-15|Has expired: Does not build with current versions of ruby
+net/unison-nox11|net/unison@nox11|2018-01-15|Moved to a flavored, generic, version
+audio/hydrogen-devel|audio/hydrogen|2018-01-17|Out of date: use audio/hydrogen for now
+graphics/py-rabbyt||2018-01-19|Has expired: Development ceased, no longer used in the ports
+deskutils/py-spice-gtk|deskutils/spice-gtk|2018-01-20|Old style Python bindings dropped, no difference from the master port

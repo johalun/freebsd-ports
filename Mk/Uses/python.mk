@@ -87,7 +87,9 @@
 #			  otherwise be created and they are not wanted.
 #
 #	allflavors 	- Generate flavors for all possible versions and not
-#			  simply the default ones.
+#			  simply the default ones.  Only to be used for py-*
+#			  ports that are part of the Python distribution, but
+#			  kept as separate ports.
 #
 #	optsuffix	- Set PKGNAMESUFFIX to PYTHON_PKGNAMESUFFIX if not the
 #			  default python version.
@@ -225,15 +227,6 @@
 #	PYTHON2="" PYTHON3="@comment " for Python 2.x
 #	PYTHON2="@comment " PYTHON3="" for Python 3.x
 #
-# Deprecated variables, which exist for compatibility and will be removed
-# soon:
-#
-# PYTHON_DEFAULT_VERSION
-# PYTHON2_DEFAULT_VERSION
-# PYTHON3_DEFAULT_VERSION
-#			- Deprecated, use PYTHON[2,3]_DEFAULT instead,
-#			  see bsd.default-versions.mk
-#
 # PYTHON_PKGNAMESUFFIX
 #			- Deprecated, use PYTHON_PKGNAMEPREFIX instead
 #			  default: -py${PYTHON_SUFFIX}
@@ -301,58 +294,17 @@ _PYTHON_RUN_DEP=	yes
 _PYTHON_TEST_DEP=	yes
 .endif
 
-.if defined(PYTHON_DEFAULT_VERSION)
-WARNING+=	"PYTHON_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python=${PYTHON_DEFAULT_VERSION:S/^python//} instead"
-.endif
-.if defined(PYTHON2_DEFAULT_VERSION)
-WARNING+=	"PYTHON2_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python2=${PYTHON2_DEFAULT_VERSION:S/^python//} instead"
-.endif
-.if defined(PYTHON3_DEFAULT_VERSION)
-WARNING+=	"PYTHON3_DEFAULT_VERSION is defined, consider using DEFAULT_VERSIONS=python3=${PYTHON3_DEFAULT_VERSION:S/^python//} instead"
-.endif
-
 .if ${PYTHON2_DEFAULT} != ${PYTHON_DEFAULT} && ${PYTHON3_DEFAULT} != ${PYTHON_DEFAULT}
 WARNING+=	"PYTHON_DEFAULT must be a version present in PYTHON2_DEFAULT or PYTHON3_DEFAULT, if you want more Python flavors, set BUILD_ALL_PYTHON_FLAVORS in your make.conf"
 .endif
 
-.if exists(${LOCALBASE}/bin/python)
-.if !defined(_PYTHON_DEFAULT_VERSION)
-_PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
-		'import sys; print("%d.%d" % sys.version_info[:2])' 2> /dev/null \
-		|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
-.endif
-_EXPORTED_VARS+=	_PYTHON_DEFAULT_VERSION
-.if defined(PYTHON_DEFAULT) && (${PYTHON_DEFAULT} != ${_PYTHON_DEFAULT_VERSION})
-WARNING+=	"Your requested default python version ${PYTHON_DEFAULT} is different from the installed default python interpreter version ${_PYTHON_DEFAULT_VERSION}"
-.endif
-PYTHON_DEFAULT_VERSION=		python${_PYTHON_DEFAULT_VERSION}
-.else
-PYTHON_DEFAULT_VERSION=		python${PYTHON_DEFAULT}
-.endif # exists(${LOCALBASE}/bin/python)
-
-# Is only a meta-port version defined?
-.if ${PYTHON_DEFAULT_VERSION} == "python2"
-PYTHON2_DEFAULT_VERSION?=	python${PYTHON2_DEFAULT}
-.elif ${PYTHON_DEFAULT_VERSION:R} == "python2"
-PYTHON2_DEFAULT_VERSION=	${PYTHON_DEFAULT_VERSION}
-.else
-PYTHON2_DEFAULT_VERSION?=	python${PYTHON2_DEFAULT}
-.endif
-.if ${PYTHON_DEFAULT_VERSION} == "python3"
-PYTHON3_DEFAULT_VERSION?=	python${PYTHON3_DEFAULT}
-.elif ${PYTHON_DEFAULT_VERSION:R} == "python3"
- PYTHON3_DEFAULT_VERSION=	${PYTHON_DEFAULT_VERSION}
-.else
-PYTHON3_DEFAULT_VERSION?=	python${PYTHON3_DEFAULT}
-.endif
-
 # Keep this before the FLAVOR selection to get the meta port dependency.
 .if ${_PYTHON_ARGS} == "2"
-_PYTHON_ARGS=		${PYTHON2_DEFAULT_VERSION:S/^python//}
+_PYTHON_ARGS=		${PYTHON2_DEFAULT}
 _WANTS_META_PORT=	2
 DEV_WARNING+=		"USES=python:2 is deprecated, use USES=python:2.7"
 .elif ${_PYTHON_ARGS} == "3"
-_PYTHON_ARGS=		${PYTHON3_DEFAULT_VERSION:S/^python//}
+_PYTHON_ARGS=		${PYTHON3_DEFAULT}
 _WANTS_META_PORT=	3
 DEV_WARNING+=		"USES=python:3 is deprecated, use USES=python:3.4+ or an appropriate version range"
 .endif  # ${_PYTHON_ARGS} == "2"
@@ -375,7 +327,7 @@ DEV_WARNING+=		"USES=python:3 is deprecated, use USES=python:3.4+ or an appropri
 # (_PYTHON_VERSION_NONSUPPORTED).
 _PYTHON_VERSION:=	${PYTHON_VERSION:S/^python//}
 .else
-_PYTHON_VERSION:=	${PYTHON_DEFAULT_VERSION:S/^python//}
+_PYTHON_VERSION:=	${PYTHON_DEFAULT}
 .endif # defined(PYTHON_VERSION)
 
 # Validate Python version whether it meets the version restriction.
@@ -451,7 +403,7 @@ FLAVOR=	${FLAVORS:[1]}
 .  endif
 .endif
 
-.if ${FLAVOR:Mpy[23]*}
+.if ${FLAVOR:Mpy[23][0-9]}
 _PYTHON_VERSION=	${FLAVOR:S/py//:C/(.)/\1./}
 .endif
 
@@ -463,11 +415,12 @@ PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 .endif
 
 # To avoid having dependencies with @ and empty flavor:
-.if empty(FLAVOR)
-PY_FLAVOR=	${PYTHON_VERSION:S/^python/py/:S/.//}
-.else
-PY_FLAVOR=	${FLAVOR}
-.endif
+# _PYTHON_VERSION is either set by (first that matches):
+# - If using Python flavors, from the current Python flavor
+# - If using a version restriction (USES=python:3.4+), from the first
+#   acceptable default Python version.
+# - From PYTHON_DEFAULT
+PY_FLAVOR=	py${_PYTHON_VERSION:S/.//}
 
 # Pass PYTHON_VERSION down the dependency chain. This ensures that
 # port A -> B -> C all will use the same python version and do not
@@ -475,7 +428,7 @@ PY_FLAVOR=	${FLAVOR}
 # the supported version range.
 PYTHON_VERSION?=	python${_PYTHON_VERSION}
 .if !defined(PYTHON_NO_DEPENDS) && \
-    ${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION}
+    ${PYTHON_VERSION} != python${PYTHON_DEFAULT}
 DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 .endif
 
@@ -566,23 +519,32 @@ RUN_DEPENDS+=	cython-${PYTHON_VER}:lang/cython@${PY_FLAVOR}
 .endif
 
 .if defined(_PYTHON_FEATURE_CONCURRENT)
+.if !defined(_PYTHON_FEATURE_FLAVORS) && (${_PYTHON_VERSION_MINIMUM:M3*} || ${_PYTHON_VERSION_MAXIMUM:M2*})
+DEV_WARNING+=	"USE_PYTHON=concurrent when only one of Python 2 or 3 is supported AND not using flavors does not make any sense"
+.endif
 _USES_POST+=		uniquefiles:dirs
-.if ${PYTHON_VERSION} == ${PYTHON_DEFAULT_VERSION}
+.if defined(_PYTHON_FEATURE_FLAVORS) && ${FLAVOR} == ${FLAVORS:[1]}
+UNIQUE_DEFAULT_LINKS=	yes
+.elif !defined(_PYTHON_FEATURE_FLAVORS) && ${PYTHON_VERSION} == python${PYTHON_DEFAULT}
 UNIQUE_DEFAULT_LINKS=	yes
 .else
 UNIQUE_DEFAULT_LINKS=	no
 .endif
 UNIQUE_PREFIX=		${PYTHON_PKGNAMEPREFIX}
 UNIQUE_SUFFIX=		-${PYTHON_VER}
+UNIQUE_SUFFIX_TYPES+=	SUFFIX_MAN
+UNIQUE_SUFFIX_MAN_WITH_EXT=	.[1-9ln]
+UNIQUE_SUFFIX_MAN_EXTRA_EXT=	.gz
 
 .if defined(_PYTHON_FEATURE_AUTOPLIST)
-UNIQUE_FIND_SUFFIX_FILES=	\
-	${SED} -e 's|^${PREFIX}/||' ${_PYTHONPKGLIST} ${TMPPLIST} | \
-	${EGREP} -e '^bin/.*$$|^sbin/.*$$|^libexec/.*$$'
+_UNIQUE_FIND_SUFFIX_FILES=	${SED} -e 's|^${PREFIX}/||' ${_PYTHONPKGLIST} ${TMPPLIST}
 .else
-UNIQUE_FIND_SUFFIX_FILES=	\
-	${EGREP} -he '^bin/.*$$|^sbin/.*$$|^libexec/.*$$' ${TMPPLIST} 2>/dev/null
+_UNIQUE_FIND_SUFFIX_FILES=	${SED} -e 's|^${PREFIX}/||' ${TMPPLIST} 2>/dev/null
 .endif
+UNIQUE_FIND_SUFFIX_FILES+=	${_UNIQUE_FIND_SUFFIX_FILES} | \
+				${EGREP} -he '^bin/.*$$|^sbin/.*$$|^libexec/.*$$'
+UNIQUE_FIND_SUFFIX_MAN_FILES+=	${_UNIQUE_FIND_SUFFIX_FILES} | \
+				${EGREP} -he '^man/man[1-9ln]/.*$$'
 .endif # defined(_PYTHON_FEATURE_CONCURRENT)
 
 _CURRENTPORT:=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}

@@ -19,7 +19,6 @@
     SUBDIR += afl
     SUBDIR += afterglow
     SUBDIR += aide
-    SUBDIR += aimsniff
     SUBDIR += akmos
     SUBDIR += amap
     SUBDIR += amavis-stats
@@ -38,6 +37,7 @@
     SUBDIR += barnyard2
     SUBDIR += barnyard2-sguil
     SUBDIR += base
+    SUBDIR += base-audit
     SUBDIR += bcrypt
     SUBDIR += bcwipe
     SUBDIR += bdes
@@ -46,6 +46,7 @@
     SUBDIR += belier
     SUBDIR += bfbtester
     SUBDIR += binwalk
+    SUBDIR += bitwarden-ruby
     SUBDIR += blindelephant
     SUBDIR += boringssl
     SUBDIR += botan110
@@ -182,7 +183,6 @@
     SUBDIR += gnomint
     SUBDIR += gnupg
     SUBDIR += gnupg1
-    SUBDIR += gnupg20
     SUBDIR += gnutls
     SUBDIR += go-cve-dictionary
     SUBDIR += go.crypto
@@ -294,6 +294,7 @@
     SUBDIR += kdbx-viewer
     SUBDIR += kedpm
     SUBDIR += keepass
+    SUBDIR += keepass-plugin-keepassrpc
     SUBDIR += keepassx
     SUBDIR += keepassx-devel
     SUBDIR += keepassx2
@@ -329,6 +330,7 @@
     SUBDIR += libbeid
     SUBDIR += libbf
     SUBDIR += libcryptui
+    SUBDIR += libdecaf
     SUBDIR += libecc
     SUBDIR += libfprint
     SUBDIR += libgcrypt
@@ -408,6 +410,7 @@
     SUBDIR += metasploit
     SUBDIR += mhash
     SUBDIR += mindterm-binary
+    SUBDIR += minisign
     SUBDIR += monkeysphere
     SUBDIR += morphis
     SUBDIR += munge
@@ -427,6 +430,7 @@
     SUBDIR += nss_compat_ossl
     SUBDIR += nyx
     SUBDIR += oath-toolkit
+    SUBDIR += obfs4proxy-tor
     SUBDIR += obfsclient
     SUBDIR += obfsproxy
     SUBDIR += ocaml-cryptgps
@@ -801,6 +805,7 @@
     SUBDIR += pecl-gnupg
     SUBDIR += pecl-krb5
     SUBDIR += pecl-libsodium
+    SUBDIR += pecl-mcrypt
     SUBDIR += pecl-pam
     SUBDIR += pecl-scrypt
     SUBDIR += pecl-ssh2
@@ -834,6 +839,7 @@
     SUBDIR += pidgin-otr
     SUBDIR += pinentry
     SUBDIR += pinentry-curses
+    SUBDIR += pinentry-fltk
     SUBDIR += pinentry-gnome3
     SUBDIR += pinentry-gtk2
     SUBDIR += pinentry-qt4
@@ -911,6 +917,7 @@
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
+    SUBDIR += py-josepy
     SUBDIR += py-kerberos
     SUBDIR += py-keyczar
     SUBDIR += py-keyring
@@ -943,6 +950,7 @@
     SUBDIR += py-pyaes
     SUBDIR += py-pyaff4
     SUBDIR += py-pyaxo
+    SUBDIR += py-pyblake2
     SUBDIR += py-pyclamd
     SUBDIR += py-pycrypto
     SUBDIR += py-pycryptodome
@@ -1041,8 +1049,8 @@
     SUBDIR += rubygem-airbrussh
     SUBDIR += rubygem-attr_encrypted
     SUBDIR += rubygem-bcrypt
-    SUBDIR += rubygem-bcrypt_pbkdf
     SUBDIR += rubygem-bcrypt-ruby
+    SUBDIR += rubygem-bcrypt_pbkdf
     SUBDIR += rubygem-devise-two-factor
     SUBDIR += rubygem-devise-two-factor-rails5
     SUBDIR += rubygem-devise-two-factor-rails50
@@ -1086,14 +1094,17 @@
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-openssl
     SUBDIR += rubygem-openssl-ccm
+    SUBDIR += rubygem-openssl20
     SUBDIR += rubygem-openvas-omp
     SUBDIR += rubygem-origami
+    SUBDIR += rubygem-pbkdf2-ruby
     SUBDIR += rubygem-pundit
     SUBDIR += rubygem-pyu-ruby-sasl
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-razorback-scriptNugget
     SUBDIR += rubygem-rbnacl
     SUBDIR += rubygem-rbnacl-libsodium
+    SUBDIR += rubygem-rbnacl4
     SUBDIR += rubygem-recog
     SUBDIR += rubygem-rex-arch
     SUBDIR += rubygem-rex-bin_tools
@@ -1168,9 +1179,11 @@
     SUBDIR += snort
     SUBDIR += snort-rep
     SUBDIR += snort2pfcd
+    SUBDIR += snort3
     SUBDIR += snortreport
     SUBDIR += snortsam
     SUBDIR += snortsnarf
+    SUBDIR += snuffleupagus
     SUBDIR += softether
     SUBDIR += softether-devel
     SUBDIR += softhsm
@@ -1221,6 +1234,7 @@
     SUBDIR += tinc
     SUBDIR += tinc-devel
     SUBDIR += tinyca
+    SUBDIR += titan
     SUBDIR += titus
     SUBDIR += tls-check
     SUBDIR += tlswrap
@@ -1229,6 +1243,7 @@
     SUBDIR += tor-devel
     SUBDIR += tpm-tools
     SUBDIR += tpmmanager
+    SUBDIR += trezord
     SUBDIR += trinokiller
     SUBDIR += tripwire
     SUBDIR += tripwire-131

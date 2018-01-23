@@ -17,13 +17,12 @@ LICENSE_FILE_GPLv3+ =	${WRKSRC}/license.txt
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libmad.so:audio/libmad
 
-BROKEN_powerpc64=	fails to compile: Dialog.h: 'to_string' is not a member of 'std'
-
 USE_GITHUB=	yes
 
 USES=		compiler:c++11-lib jpeg localbase:ldflags openal scons
 USE_SDL=	sdl2
 USE_GL=		gl glew
+LLD_UNSAFE=	yes
 INSTALLS_ICONS=	yes
 
 PORTDATA=	*

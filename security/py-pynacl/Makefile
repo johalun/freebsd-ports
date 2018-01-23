@@ -2,14 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	pynacl
-DISTVERSION=	1.2.0
+DISTVERSION=	1.2.1
+PORTREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	PyNaCl-${PORTVERSION}
 
 MAINTAINER=	yuri@FreeBSD.org
-COMMENT=	PyNaCl is a Python binding to the Networking and Cryptography library
+COMMENT=	Python binding to the Networking and Cryptography library
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -29,7 +30,7 @@ BUNDLED_NACL_LIB_DEPENDS_OFF=	libsodium.so:security/libsodium
 BUNDLED_NACL_MAKE_ENV_OFF=	SODIUM_INSTALL=system
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/nacl/_sodium.so
+	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/nacl/_sodium*.so
 
 do-test:
 	@cd ${WRKSRC} && ${SETENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} ${PYTHON_CMD} -m pytest -rs tests

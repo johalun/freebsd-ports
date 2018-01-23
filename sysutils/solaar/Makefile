@@ -2,7 +2,7 @@
 
 PORTNAME=	solaar
 PORTVERSION=	g20170327
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -29,7 +29,8 @@ GH_TAGNAME=	53ec751
 NO_ARCH=	yes
 
 OPTIONS_DEFINE=	GUI
-GUI_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=0:devel/py-gobject3@${FLAVOR}
+GUI_USES=	gnome
+GUI_USE=	gnome=pygobject3:run
 
 post-patch:
 	@${CP} ${FILESDIR}/hidapi.py ${WRKSRC}/lib/hidapi/udev.py
@@ -40,5 +41,9 @@ post-patch:
 		${WRKSRC}/lib/logitech_receiver/listener.py
 	@${REINPLACE_CMD} 's|[[:<:]]cmd[[:>:]]|action|' \
 		${WRKSRC}/lib/solaar/cli/__init__.py
+
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/devd-solaar.conf \
+		${STAGEDIR}${PREFIX}/etc/devd/solaar.conf.sample
 
 .include <bsd.port.mk>

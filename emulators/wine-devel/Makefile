@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	3.0-rc1
+DISTVERSION=	3.0-rc6
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -34,12 +34,14 @@ CONFIGURE_ARGS+=--verbose --disable-tests \
 		--without-alsa --without-capi --without-dbus \
 		--without-gettext --without-gettextpo \
 		--without-gphoto --without-gsm --without-gstreamer \
+		--without-krb5 \
 		--without-opencl \
 		--without-osmesa \
 		--with-oss \
 		--without-pulse \
 		--without-sane \
-		--without-tiff
+		--without-tiff \
+		--without-udev
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
 WINELIBDIR?=	${PREFIX}/lib
 USES=		bison compiler:c11 desktop-file-utils gmake shebangfix tar:xz
@@ -91,8 +93,6 @@ MPG123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
 
 OPENAL_CONFIGURE_WITH=	openal
 OPENAL_USES=		openal
-
-STAGING_LIB_DEPENDS=	libtxc_dxtn.so:graphics/s2tc
 
 V4L_CONFIGURE_WITH=	v4l
 V4L_BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
@@ -147,13 +147,11 @@ DISTFILES+=	${COMP_DIST}:cho
 
 EXTRACT_DEPENDS=bash:shells/bash \
 		git:devel/git \
-		${AUTOCONF_DEPENDS}
-
-USE_AUTOTOOLS=	autoconf:env
+		autoreconf-2.69:devel/autoconf
+LIB_DEPENDS+=	libtxc_dxtn.so:graphics/s2tc
 
 post-extract: fix-shebang
 	cd ${WRKSRC} && ${TAR} xf ${DISTDIR}/${COMP_DIST} --strip-components 1
-	${REINPLACE_CMD} 's|autoreconf|${AUTORECONF}|g' ${WRKSRC}/patches/patchinstall.sh
 	cd ${WRKSRC} && bash ./patches/patchinstall.sh --backend=patch DESTDIR=${WRKSRC} --all
 .endif
 

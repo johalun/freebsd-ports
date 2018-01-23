@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nginx
-PORTVERSION=	1.13.7
-PORTREVISION=	2
+PORTVERSION=	1.13.8
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
 MASTER_SITES+=	LOCAL/osa
@@ -524,7 +523,7 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_eval}
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_FANCYINDEX}
-NGINX_FANCYINDEX_VERSION=	0.4.1
+NGINX_FANCYINDEX_VERSION=	0.4.2
 GH_ACCOUNT+=	aperezdc:fancyindex
 GH_PROJECT+=	ngx-fancyindex:fancyindex
 GH_TAGNAME+=	v${NGINX_FANCYINDEX_VERSION}:fancyindex

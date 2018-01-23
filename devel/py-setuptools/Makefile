@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	setuptools
-PORTVERSION=	36.5.0
+PORTVERSION=	38.2.5
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ PLIST_FILES=	"@sample %%PYTHON_SITELIBDIR%%/easy-install.pth.dist %%PYTHON_SITEL
 
 .include <bsd.port.pre.mk>
 
-.if ${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION}
+.if ${FLAVOR} != ${FLAVORS:[1]}
 SUB_FILES+=	pkg-message
 SUB_LIST+=	PYTHON_VER=${PYTHON_VER}
 .endif

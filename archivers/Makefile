@@ -65,6 +65,7 @@
     SUBDIR += libarchive
     SUBDIR += libcabinet
     SUBDIR += libcomprex
+    SUBDIR += libdeflate
     SUBDIR += libdynamite
     SUBDIR += liblz4
     SUBDIR += liblzxcomp
@@ -170,6 +171,7 @@
     SUBDIR += ppmd-7z
     SUBDIR += ppunpack
     SUBDIR += pxz
+    SUBDIR += py-acefile
     SUBDIR += py-attic
     SUBDIR += py-backports.lzma
     SUBDIR += py-borgbackup
@@ -189,6 +191,8 @@
     SUBDIR += py-rjsmin
     SUBDIR += py-warctools
     SUBDIR += py-xopen
+    SUBDIR += py-zstandard
+    SUBDIR += py-zstd
     SUBDIR += qpress
     SUBDIR += quazip
     SUBDIR += quazip-qt5

@@ -2,6 +2,7 @@
 
 PORTNAME=	nfft
 PORTVERSION=	3.4.0
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	mike.d.ft402@gmail.com
@@ -15,7 +16,6 @@ BUILD_DEPENDS=	bash:shells/bash
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-fftw3=${PREFIX}
 USES=		autoreconf libtool
-USE_AUTOTOOLS=	autoconf:env
 USE_LDCONFIG=	yes
 TEST_TARGET=	check
 

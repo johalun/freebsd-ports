@@ -9,7 +9,7 @@ CATEGORIES=	science gnome python
 MAINTAINER=	woodsb02@FreeBSD.org
 COMMENT=	GTK3-based genealogy program
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libosmgpsmap-1.0.so:x11-toolkits/osm-gps-map
@@ -23,7 +23,7 @@ GH_ACCOUNT=	gramps-project
 
 NO_ARCH=	yes
 USES=		desktop-file-utils gettext shared-mime-info python:3.2+
-USE_GNOME=	cairo gtk30 intltool librsvg2 pango py3gobject3
+USE_GNOME=	cairo gtk30 intltool librsvg2 pango pygobject3
 USE_PYTHON=	autoplist distutils optsuffix
 CONFIGURE_ARGS=	--disable-mime-install
 INSTALLS_OMF=	yes

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	weechat
-PORTVERSION=	2.0
-PORTREVISION=	1
+PORTVERSION=	2.0.1
 CATEGORIES=	irc
 MASTER_SITES=	https://weechat.org/files/src/
 
@@ -75,10 +74,6 @@ TCL_USES=		tcl:85+
 WARNING=	"Using Python 3.x is NOT recommended because many \"official\" scripts won\'t work"
 CMAKE_ARGS+=	-DENABLE_PYTHON3:BOOL=true \
 		-DPYTHON_LIBRARY:FILEPATH=${LOCALBASE}/lib/libpython${PYTHON_VER}m.so
-.endif
-
-.if !empty(PORT_OPTIONS:MRUBY) && (${ARCH} == "amd64" || ${ARCH} == "i386")
-LIB_DEPENDS+=   libunwind.so:devel/libunwind
 .endif
 
 post-patch:

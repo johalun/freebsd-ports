@@ -15,7 +15,7 @@ LICENSE=	GPLv3
 
 BUILD_DEPENDS=	xmlada>=3.2:textproc/xmlada
 
-USES=		ada gmake python:build shebangfix
+USES=		ada gmake python:2.7,build shebangfix
 GNU_CONFIGURE=	yes
 NO_MTREE=	yes
 YEAR=		2014
@@ -47,7 +47,6 @@ OPTIONS_SUB=	yes
 TESTSUITE_ALL_TARGET=	testsuite
 TESTSUITE_BUILD_DEPENDS=gnatpython>=20101207:devel/gnatpython
 TESTSUITE_DESC=		Enable 'make run-testsuite' target
-
 
 .include <bsd.port.options.mk>
 

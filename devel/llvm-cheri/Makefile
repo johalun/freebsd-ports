@@ -63,7 +63,8 @@ LLD_GH_SUBDIR=		tools/lld:lld
 LLD_GH_TAGNAME=		${LLD_COMMIT}:lld
 LLD_PORTDOCS=		lld
 LLDB_DESC=		Install lldb, the LLVM debugger (ignore on 9.x)
-LLDB_BUILD_DEPENDS=	swig:devel/swig13
+LLDB_BUILD_DEPENDS=	swig3.0:devel/swig30
+LLDB_BINARY_ALIAS=	swig=swig3.0
 LLDB_GH_PROJECT=	lldb:lldb
 LLDB_GH_TAGNAME=	${LLDB_COMMIT}:lldb
 
@@ -156,7 +157,7 @@ DOCS_PLIST_FILES+=	man/man1/scan-build${LLVM_SUFFIX}.1.gz
 
 .if ${PORT_OPTIONS:MLIT}
 MAN1SRCS+=	lit.1 FileCheck.1
-_USES_PYTHON=	python
+_USES_PYTHON=	python:2.7
 LIT_COMMANDS=	lit llvm-lit FileCheck
 .endif
 
@@ -170,10 +171,10 @@ COMMANDS+=	argdumper \
 		lldb \
 		lldb-mi \
 		lldb-server
-_USES_PYTHON=	python
+_USES_PYTHON=	python:2.7
 .endif
 
-_USES_PYTHON?=	python:build
+_USES_PYTHON?=	python:2.7,build
 USES+=		${_USES_PYTHON}
 
 MAN1SRCS+=	bugpoint.1 llc.1 lli.1 llvm-ar.1 llvm-as.1 \
