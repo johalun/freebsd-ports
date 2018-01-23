@@ -6,7 +6,7 @@ bin/swaygrab
 bin/swaylock
 bin/swaymsg
 etc/pam.d/swaylock
-%%ETCDIR%%/config
+@sample %%ETCDIR%%/config %%ETCDIR%%/config.sample
 %%ETCDIR%%/security.d/00-defaults
 %%ETCDIR%%/security.d/10-freebsd
 man/man1/sway.1.gz

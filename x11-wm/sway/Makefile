@@ -11,8 +11,9 @@ COMMENT=	i3-compatible Wayland compositor
 LICENSE=	MIT
 LICENSE_FILES=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	a2x:textproc/asciidoc
-LIB_DEPENDS=	libwlc.so>=0.0.10:x11-toolkits/wlc \
+BUILD_DEPENDS=	a2x:textproc/asciidoc \
+		wlc>=0.0.10:x11-toolkits/wlc
+LIB_DEPENDS=	libwlc.so:x11-toolkits/wlc \
 		libwayland-server.so:graphics/wayland \
 		libepoll-shim.so:devel/libepoll-shim \
 		libpcre.so:devel/pcre \
@@ -23,15 +24,19 @@ LIB_DEPENDS=	libwlc.so>=0.0.10:x11-toolkits/wlc \
 		libMagickCore-6.so:graphics/ImageMagick \
 		libavutil.so:multimedia/ffmpeg
 
+USES=		cmake:outsource gettext-runtime gnome pathfix pkgconfig
+
+USE_GNOME=	cairo pango gdkpixbuf2
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	swaywm
-
-USES=		cmake:outsource gettext-runtime gnome pathfix pkgconfig
-USE_GNOME=	cairo pango gdkpixbuf2
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	SUID
 OPTIONS_DEFAULT=SUID
 SUID_DESC=	Install sway binary with setuid bit set
+
+#post-build:
+#	@${MV} ${CONFIGURE_WRKSRC}/bin/config ${CONFIGURE_WRKSRC}/bin/config.sample
 
 .include <bsd.port.mk>

@@ -5,7 +5,7 @@
  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 -add_compile_options(-Wall -Wextra -Wno-unused-parameter -Wno-unused-result -Werror)
-+add_compile_options(-Wall -Wextra -Wno-unused-parameter -Wno-unused-result -Werror -Wno-error=pointer-bool-conversion)
++add_compile_options(-Wall -Wextra -Wno-unused-parameter -Wno-unused-result -Werror -Wno-error=pointer-bool-conversion -Wno-pointer-bool-conversion)
  
  list(INSERT CMAKE_MODULE_PATH 0
  	${CMAKE_CURRENT_SOURCE_DIR}/CMake
