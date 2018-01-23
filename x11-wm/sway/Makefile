@@ -12,7 +12,7 @@ LICENSE=	MIT
 LICENSE_FILES=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	a2x:textproc/asciidoc
-LIB_DEPENDS=	libwlc.so:x11-toolkits/wlc \
+LIB_DEPENDS=	libwlc.so>=0.0.10:x11-toolkits/wlc \
 		libwayland-server.so:graphics/wayland \
 		libepoll-shim.so:devel/libepoll-shim \
 		libpcre.so:devel/pcre \
