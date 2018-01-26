@@ -36,7 +36,4 @@ OPTIONS_DEFINE=	SUID
 OPTIONS_DEFAULT=SUID
 SUID_DESC=	Install sway binary with setuid bit set
 
-#post-build:
-#	@${MV} ${CONFIGURE_WRKSRC}/bin/config ${CONFIGURE_WRKSRC}/bin/config.sample
-
 .include <bsd.port.mk>

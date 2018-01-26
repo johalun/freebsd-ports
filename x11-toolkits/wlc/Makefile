@@ -16,6 +16,7 @@ BUILD_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon \
 		libxcb-ewmh.so:x11/xcb-util-wm \
 		libwayland-server.so:graphics/wayland \
+		libwayland-egl.so:graphics/mesa-libs \
 		libdrm.so:graphics/libdrm \
 		libudev.so:devel/libudev-devd \
 		libinput.so:x11/libinput \
